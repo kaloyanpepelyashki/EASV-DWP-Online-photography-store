@@ -1,0 +1,18 @@
+version: "3.7" # Docker version
+services: # Services we want to include
+  www:
+    container_name: photographystoreapp
+    image: httpd:2.4
+    volumes:
+      - "./application:/var/www/html" # Sync project dir with the container web dir
+    ports:
+      - 3000:80
+      - 443:443 # For future ssl trafic
+    environment:
+      SITE_URL: http://localhost
+#     networks:
+#       - impact
+
+# networks:
+#   impact:
+#     external: true
