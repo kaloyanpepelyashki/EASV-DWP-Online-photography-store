@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php": "^8.0",
+        "supabase/supabase-php": "^0.0.3"
+    }
+}
