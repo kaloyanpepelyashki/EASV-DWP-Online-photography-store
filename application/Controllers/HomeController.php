@@ -1,22 +1,31 @@
 <?php
-namespace Views;
+namespace Controllers;
 
 use Models as M;
 
 include_once(__DIR__ . '/../Models/DatabaseClient.php');
+include_once(__DIR__ . '/../Models/ProductsModel.php');
 
-class HomeViewBLOC
+
+class HomeController
 {
     private $dBClient;
+    private $productsModel;
 
     public function __construct()
     {
         $this->dBClient = M\DatabaseClient::getInstance();
+        $this->productsModel = new M\ProductsModel();
     }
 
     public function getDatabaseClient()
     {
         return $this->dBClient;
+    }
+
+    public function getAllProducts(): array
+    {
+        return $this->productsModel->getAllProducts();
     }
 
 }
