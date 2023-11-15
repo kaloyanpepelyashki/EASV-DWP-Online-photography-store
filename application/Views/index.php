@@ -74,6 +74,13 @@ function renderTableProducts($controller)
             <?php renderTableProducts($controller); ?>
         </tbody>
     </table>
+
+    <?php echo (var_dump($controller->getProduct_byId(2)));
+
+    $product = $controller->getProduct_byId(2);
+
+    echo $product["productid"];
+    ?>
 </body>
 
 </html>

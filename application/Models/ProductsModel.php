@@ -15,4 +15,9 @@ class ProductsModel extends DatabaseClient
     {
         return $this->allProducts;
     }
+
+    public function getProduct_ById(int $id)
+    {
+        return DatabaseClient::getInstance()->getSpecificID_FromTable("product", $id);
+    }
 }
