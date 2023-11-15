@@ -5,7 +5,8 @@ namespace Models;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 //Class that holds all of the interaction with database
-//DON'T INSTANTIATE WITH NEW Class();
+//DON'T INSTANTIATE WITH "new DatabaseClient()";
+//Instead use "DatabaseClient::getInstance()";
 class DatabaseClient
 {
     private static $instance;
@@ -63,6 +64,37 @@ class DatabaseClient
             throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
         }
 
+    }
+
+    public function getSpecificID_FromTable(string $table, int $id)
+    {
+        try {
+            $context = stream_context_create([
+                'http' => [
+                    'header' => [
+                        'Content-Type: application/json',
+                        'apikey: ' . $this->supabaseApiKey,
+                    ],
+                    'method' => 'GET',
+                ],
+            ]);
+
+            $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*&productid=eq.{$id}", false, $context);
+
+            if (!$response) {
+                // Handle error
+                echo "Error querying data";
+                //in case of error it returns an empty array
+                return null;
+            } else {
+                // Access the data
+                $data = json_decode($response, true);
+                return $data[0];
+            }
+        } catch (\Exception $e) {
+            echo "Error retreiving data: {$e->getMessage()}";
+            throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
+        }
     }
 
 }

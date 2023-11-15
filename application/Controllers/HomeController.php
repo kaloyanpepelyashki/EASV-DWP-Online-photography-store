@@ -28,4 +28,9 @@ class HomeController
         return $this->productsModel->getAllProducts();
     }
 
+    public function getProduct_byId(int $id)
+    {
+        return $this->productsModel->getProduct_ById($id);
+    }
+
 }
