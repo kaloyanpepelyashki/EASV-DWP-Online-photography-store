@@ -7,4 +7,8 @@ ini_set('display_errors', 1);
 // The output -> Index
 get('/', './Views/index.php');
 
-any('/404', 'Views/404.php');
+get("/product", "./Views/product.php");
+
+get("/productsDemo", "./Views/product.php");
+
+any('/404', './Views/404.php');

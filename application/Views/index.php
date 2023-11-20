@@ -30,7 +30,7 @@ function renderTableProducts($controller)
         $productName = $product["name"];
         $productUrl = $product["url"];
 
-        echo "<tr><td> $productId</td><td>$productName</td><td><img src=$productUrl /></td></tr>";
+        echo "<div class='grid-item' id='product-component'><a href='/store/product'><img class='' src=$productUrl></a><div class='text-wrapper flex-center'><h3>$productName</h3><p>Lorem ipsim dolor kokot mrdka</p><a href='./product' class='cta cta-2 flex-center'>Buy </a></div></div>";
     }
 }
 ?>
@@ -78,7 +78,6 @@ function renderTableProducts($controller)
 
     <?php
 
-    echo (var_dump($controller->getProduct_byId(2)));
 
 
     $product = $controller->getProduct_byId(2);
@@ -123,6 +122,19 @@ function renderTableProducts($controller)
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
 
+
+
+
+            <!-- THE GRID THAT HOLDS THE PRODUCTS -->
+            <section class="product-grid">
+                <!-- GRID ELEMENT -->
+                <?php
+                //The function that outputs the product template for each item from the database
+                renderTableProducts($controller);
+                ?>
+
+            </section>
+
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
                 I'm bringing the Slavic spirit to my new venture,
@@ -151,7 +163,7 @@ function renderTableProducts($controller)
     <?php
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/components';
     // include $IPATH . 'global-footer.php';
-    ?> -->
+    ?>
 </body>
 
 </html>

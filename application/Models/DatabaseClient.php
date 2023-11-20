@@ -33,11 +33,15 @@ class DatabaseClient
         return self::$instance;
     }
 
-    //BL methods 
+    //Bussiness Logic methods
+
+    //This method returns all items from a table
+    //The table is being specified as a string argument
     public function getAllFromTable(string $table): array|null
     {
         try {
 
+            //We query the data with a simple http get request
             $context = stream_context_create([
                 'http' => [
                     'header' => [
@@ -47,6 +51,7 @@ class DatabaseClient
                     'method' => 'GET',
                 ],
             ]);
+            //Qeryiung the supabse url
             $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*", false, $context);
 
             if (!$response) {
@@ -60,12 +65,14 @@ class DatabaseClient
                 return $data;
             }
         } catch (\Exception $e) {
+            //Handling exceptions in the catch block
             echo "Error retreiving data: {$e->getMessage()}";
             throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
         }
 
     }
 
+    //Gets an item from a table based on ID
     public function getSpecificID_FromTable(string $table, int $id)
     {
         try {
