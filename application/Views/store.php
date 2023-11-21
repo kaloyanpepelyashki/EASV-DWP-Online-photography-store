@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-head.php';
-    ?>
+    <?php include 'assets/components/head.php'; ?>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Store | Adam Sochorec</title>
@@ -12,10 +9,7 @@
   <meta name="robots" content="noindex" />
   <meta name="googlebot" content="noindex" />
   <body id="store-index" class="store">
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-nav-bar.php';
-    ?>
+    <?php include 'assets/components/nav-bar.php'; ?>
     <main>
       <article class="wrapper-wide">
         <div class="pathname-container"></div>
@@ -43,40 +37,22 @@
         <!-- PRODUCTS START -->
         <section class="product-grid">
           <!-- PRODUCT 1 START -->
-          <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'product-component.php';
-    ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 1 END -->
           <!-- PRODUCT 2 START -->
-          <?php
-          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-          include $IPATH . 'product-component.php';
-          ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 2 END -->
           <!-- PRODUCT 3 START -->
-          <?php
-          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-          include $IPATH . 'product-component.php';
-          ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 3 END -->
           <!-- PRODUCT 4 START -->
-          <?php
-          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-          include $IPATH . 'product-component.php';
-          ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 4 END -->
           <!-- PRODUCT 5 START -->
-          <?php
-          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-          include $IPATH . 'product-component.php';
-          ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 5 END -->
           <!-- PRODUCT 6 START -->
-          <?php
-          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-          include $IPATH . 'product-component.php';
-          ?>
+          <?php include 'assets/components/product-component.php'; ?>
           <!-- PRODUCT 6 END -->
           <!-- PRODUCT 7 START -->
         </section>
@@ -119,14 +95,11 @@
           >, current purveyor of digital aesthetics and sarcasm.
         </p>
         <p class="reveal">PS: No cookies — just creativity!</p>
+        <a href="./product" class="cta flex-center reveal">Contact </a>
         <hr class="reveal" />
       </article>
       <!-- CONTACT FORM END -->
     </main>
-    <?php echo $blog['extra-footer'] ?>
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-footer.php';
-    ?>
+    <?php include 'assets/components/footer.php'; ?>
   </body>
 </html>

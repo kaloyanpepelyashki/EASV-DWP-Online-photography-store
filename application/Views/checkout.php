@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-head.php';
-    ?>
+    <?php include 'assets/components/head.php'; ?>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Product details | Adam Sochorec</title>
   </head>
-
   <body id="store-checkout" class="store">
     <meta name="robots" content="noindex" />
     <meta name="googlebot" content="noindex" />
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-nav-bar.php';
-    ?>
+    <?php include 'assets/components/nav-bar.php'; ?>
     <main>
       <article class="wrapper-wide">
+        <div class="pathname-container"></div>
+        <h1>Checkout</h1>
+
         <div class="pathname-container">
           <p>
             <span class="pathname"><a href="/"></a> &#8250; </span>
@@ -27,9 +23,7 @@
             >
           </p>
         </div>
-        <h1>Checkout</h1>
         <hr class="reveal" />
-
         <div class="grid-container seventy-thirty">
           <div class="grid-item">
             <section class="contact-form-section">
@@ -259,15 +253,12 @@
                     </div>
                   </div>
                 </div>
-                <button class="cta" type="submit">
-                 Submit Order
-                </button>
+                <button class="cta" type="submit">Submit Order</button>
               </form>
-
               <input
                 type="hidden"
                 name="_captcha"
-                value="false"
+                value="true"
               /><!-- Spam captcha deactivation -->
               <input
                 type="hidden"
@@ -283,11 +274,6 @@
         <hr class="reveal" />
       </article>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <?php
-    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-    include $IPATH . 'global-footer.php';
-    ?>
+    <?php include 'assets/components/footer.php'; ?>
   </body>
 </html>
