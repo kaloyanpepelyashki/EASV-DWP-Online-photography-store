@@ -3,7 +3,7 @@
 <footer>
   <?php
          $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-         include $IPATH . 'global-social-icons.php';
+         include $IPATH . 'social-icons.php';
          ?>
   <div class="footer-ps">
     <p>No cookies, only ❤ from Denmark</p>

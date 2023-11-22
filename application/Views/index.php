@@ -35,10 +35,10 @@ $product["url"]; echo "
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php include 'assets/components/head.php'; ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <?php include 'assets/components/head.php'; ?>
   </head>
 
   <body>
@@ -77,6 +77,7 @@ $product["url"]; echo "
 
 
     $product = $controller->getProduct_byId(2); echo $product["productid"]; ?>
+
     <main>
       <article class="wrapper-wide">
         <div class="pathname-container"></div>
@@ -157,9 +158,6 @@ $product["url"]; echo "
       </article>
       <!-- CONTACT FORM END -->
     </main>
-    <!--  <?php
-    // echo $blog['extra-footer'] 
-    ?> -->
     <?php include 'assets/components/footer.php'; ?>
   </body>
 </html>

@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php include 'assets/components/head.php'; ?>
+    <?php
+    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+    include $IPATH . 'head.php';
+    ?>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Product details | Adam Sochorec</title>
   </head>
 
   <body id="store-product" class="store">
-    <?php include 'assets/components/nav-bar.php'; ?>
+    <?php
+    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+    include $IPATH . 'nav-bar.php';
+    ?>
     <main>
       <article class="wrapper-wide">
         <h1>#00000</h1>
@@ -88,7 +94,10 @@
           <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-              <?php include 'assets/components/product-component.php'; ?>
+              <?php
+              $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+              include $IPATH . 'product-component.php';
+              ?>
             </div>
             <div class="swiper-slide">
               <?php include 'assets/components/product-component.php'; ?>
@@ -103,12 +112,18 @@
               <?php include 'assets/components/product-component.php'; ?>
             </div>
             <div class="swiper-slide">
-              <?php include 'assets/components/product-component.php'; ?>
+              <?php
+              $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+              include $IPATH . 'product-component.php';
+              ?>
             </div>
           </div>
         </div>
       </article>
     </main>
-    <?php include 'assets/components/footer.php'; ?>
+    <?php
+    $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+    include $IPATH . 'footer.php';
+    ?>
   </body>
 </html>

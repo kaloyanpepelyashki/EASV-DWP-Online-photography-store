@@ -25,10 +25,6 @@
       </nav>
     </div>
   </div>
-  <?php
-  $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/php/';
-  include $IPATH . 'store-nav-bar.php';
-  ?>
 </header>
 <!-- LOADER START -->
 <aside class="blur loader-container">
