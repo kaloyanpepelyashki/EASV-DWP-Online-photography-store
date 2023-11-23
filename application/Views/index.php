@@ -12,7 +12,7 @@ function renderTableProducts($controller)
         $productId = $product["id"];
         $productName = $product["name"];
         $productUrl = $product["url"];
-        echo "<tr><td>$productId</td><td>$productName</td><td><img src='$productUrl' /></td></tr>";
+        echo "<div class='grid-item' id='product-component'><a href='/store/product'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>Wall print</h3><p>From 300 DKK</p><a href='./product' class='cta cta-2 flex-center'>Buy</a></div></div>";
     }
 }
 ?>
@@ -73,6 +73,7 @@ function renderTableProducts($controller)
                 renderTableProducts($controller);
                 ?>
             </section>
+            <h2>2323</h2>
 
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
@@ -96,7 +97,8 @@ function renderTableProducts($controller)
         </article>
         <!-- CONTACT FORM END -->
     </main>
-    <?php include 'assets/components/footer.php'; ?>
+    <!-- <?php /* include 'Components/footer.php'; */?> -->
+    <script src="assets/autoload.js"></script>
 </body>
 
 </html>

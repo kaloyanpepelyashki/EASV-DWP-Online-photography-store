@@ -1,3 +1,15 @@
+.product-grid .grid-item {
+  box-shadow: var(--box-shadow-1);
+}
+.product-grid .grid-item .text-wrapper {
+  padding: 15px 20px 0 20px;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1697,7 +1709,6 @@ ul.menu-left.collapse {
   transition: all 0.25s;
   margin-top: 4px;
 }
-
 
 /* HEADER END */
 
