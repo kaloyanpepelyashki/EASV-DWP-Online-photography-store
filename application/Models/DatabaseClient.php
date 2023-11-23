@@ -86,7 +86,7 @@ class DatabaseClient
                 ],
             ]);
 
-            $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*&productid=eq.{$id}", false, $context);
+            $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*&id=eq.{$id}", false, $context);
 
             if (!$response) {
                 // Handle error

@@ -18,6 +18,6 @@ class ProductsModel extends DatabaseClient
 
     public function getProduct_ById(int $id)
     {
-        return DatabaseClient::getInstance()->getSpecificID_FromTable("product", $id);
+        return DatabaseClient::getInstance()->getSpecificID_FromTable("photo", $id);
     }
 }
