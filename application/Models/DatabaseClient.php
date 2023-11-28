@@ -1,8 +1,8 @@
 <?php
+
 namespace Models;
 
-//Requires the path to the autoload.php, where the supabase library is initialized
-require_once __DIR__ . '/../vendor/autoload.php';
+
 
 //Class that holds all of the interaction with database
 //DON'T INSTANTIATE WITH "new DatabaseClient()";
@@ -10,13 +10,29 @@ require_once __DIR__ . '/../vendor/autoload.php';
 class DatabaseClient
 {
     private static $instance;
-    private $supabaseUrl;
-    private string $supabaseApiKey = " ";
+    private string $supabaseUrl;
+    private $port;
+    private string $user;
+    private string $password;
+    private string $supabaseApiKey;
+    private $dbConnection;
 
     protected function __construct()
     {
         $this->supabaseUrl = "https://vuuiepkmjneplgvssvhc.supabase.co/rest/v1/";
         $this->supabaseApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1dWllcGttam5lcGxndnNzdmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNDA4ODIsImV4cCI6MjAxNDkxNjg4Mn0.QfI5GY0eWPmpG9XBpuUy7yTQHwSlJRtGtnk0bkwQtmU";
+        $this->port = 5432;
+        $this->user = "postgres";
+        $this->password = "DWP_1244_p2121";
+
+        //Establishing connection to the database
+        $this->dbConnection = pg_connect("user=$this->user password=$this->password host=db.vuuiepkmjneplgvssvhc.supabase.co port=$this->port dbname=postgres");
+
+        //Checking if the connection was not established
+        if (!$this->dbConnection) {
+            die("Error connecting to database:" . pg_last_error());
+        }
+
     }
 
     protected function __clone()
@@ -33,6 +49,11 @@ class DatabaseClient
         return self::$instance;
     }
 
+    public function closeConnection()
+    {
+        pg_close($this->dbConnection);
+    }
+
     //Bussiness Logic methods
 
     //This method returns all items from a table
@@ -41,29 +62,23 @@ class DatabaseClient
     {
         try {
 
-            //We query the data with a simple http get request
-            $context = stream_context_create([
-                'http' => [
-                    'header' => [
-                        'Content-Type: application/json',
-                        'apikey: ' . $this->supabaseApiKey,
-                    ],
-                    'method' => 'GET',
-                ],
-            ]);
-            //Qeryiung the supabse url
-            $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*", false, $context);
+            $query = "SELECT * FROM $table";
 
-            if (!$response) {
-                // Handle error
-                echo "Error querying data";
-                //in case of error it returns an empty array
-                return [];
-            } else {
-                // Access the data
-                $data = json_decode($response, true);
-                return $data;
+            $result = pg_query($this->dbConnection, $query);
+
+            if (!$result) {
+                die("Query failed: " . pg_last_error());
             }
+            $data = pg_fetch_all($result);
+
+            // Free the result set
+            pg_free_result($result);
+
+            // Close the database connection
+            // pg_close($this->dbConnection);
+
+            return $data;
+            // //We query the data with a simple http get request
         } catch (\Exception $e) {
             //Handling exceptions in the catch block
             echo "Error retreiving data: {$e->getMessage()}";
@@ -76,28 +91,50 @@ class DatabaseClient
     public function getSpecificID_FromTable(string $table, int $id)
     {
         try {
-            $context = stream_context_create([
-                'http' => [
-                    'header' => [
-                        'Content-Type: application/json',
-                        'apikey: ' . $this->supabaseApiKey,
-                    ],
-                    'method' => 'GET',
-                ],
-            ]);
 
-            $response = file_get_contents("{$this->supabaseUrl}/{$table}?select=*&id=eq.{$id}", false, $context);
+            $query = "SELECT * FROM $table WHERE id=$id";
 
-            if (!$response) {
-                // Handle error
-                echo "Error querying data";
-                //in case of error it returns an empty array
-                return null;
-            } else {
-                // Access the data
-                $data = json_decode($response, true);
-                return $data[0];
+            $result = pg_query($this->dbConnection, $query);
+
+            if (!$result) {
+                die("Query failed: " . pg_last_error());
             }
+            $data = pg_fetch_all($result);
+
+            // Free the result set
+            pg_free_result($result);
+
+            // Close the database connection
+            // pg_close($this->dbConnection);
+
+            return $data;
+
+        } catch (\Exception $e) {
+            echo "Error retreiving data: {$e->getMessage()}";
+            throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
+        }
+    }
+
+    public function testMethod(string $table)
+    {
+        try {
+            $query = "SELECT * FROM $table";
+
+            $result = pg_query($this->dbConnection, $query);
+
+            if (!$result) {
+                die("Query failed: " . pg_last_error());
+            }
+            $data = pg_fetch_all($result);
+
+            // Free the result set
+            pg_free_result($result);
+
+            // Close the database connection
+            // pg_close($this->dbConnection);
+
+            return $data;
+
         } catch (\Exception $e) {
             echo "Error retreiving data: {$e->getMessage()}";
             throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);

@@ -1,3 +1,21 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+}
+
+.product-grid .grid-item {
+  box-shadow: var(--box-shadow-1);
+}
+.product-grid .grid-item .text-wrapper {
+  padding: 15px 20px 0 20px;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 #store-index .pathname-container,
 .store h1:not(#store-index h1) {
   margin-top: 7.4rem;

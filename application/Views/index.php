@@ -12,7 +12,7 @@ function renderTableProducts($controller)
         $productId = $product["id"];
         $productName = $product["name"];
         $productUrl = $product["url"];
-        echo "<div class='grid-item' id='product-component'><a href='/store/product'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>Wall print</h3><p>From 300 DKK</p><a href='./product' class='cta cta-2 flex-center'>Buy</a></div></div>";
+        echo "<div class='grid-item' id='product-component'><a href='/store/product'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>$productName</h3><p>From 300 DKK</p><a href='./product' class='cta cta-2 flex-center'>Buy</a></div></div>";
     }
 }
 ?>
@@ -54,9 +54,7 @@ function renderTableProducts($controller)
             </div>
             <hr class="reveal" />
             <!-- PRODUCTS SECTION START -->
-            <section class="product-grid">
-                <!-- Products go in here -->
-            </section>
+
         </article>
         <!-- PRODUCTS SECTION END -->
         <!-- ABOUT START -->
@@ -64,7 +62,6 @@ function renderTableProducts($controller)
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
-
             <!-- THE GRID THAT HOLDS THE PRODUCTS -->
             <section class="product-grid">
                 <!-- GRID ELEMENT -->
@@ -73,7 +70,6 @@ function renderTableProducts($controller)
                 renderTableProducts($controller);
                 ?>
             </section>
-            <h2>2323</h2>
 
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,

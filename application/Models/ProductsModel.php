@@ -8,7 +8,8 @@ class ProductsModel extends DatabaseClient
     public function __construct()
     {
         DatabaseClient::getInstance();
-        $this->allProducts = DatabaseClient::getInstance()->getAllFromTable("product");
+        //Gets all of the photo products
+        $this->allProducts = DatabaseClient::getInstance()->getAllFromTable("photo");
     }
 
     public function getAllProducts(): array
@@ -20,4 +21,6 @@ class ProductsModel extends DatabaseClient
     {
         return DatabaseClient::getInstance()->getSpecificID_FromTable("photo", $id);
     }
+
+
 }
