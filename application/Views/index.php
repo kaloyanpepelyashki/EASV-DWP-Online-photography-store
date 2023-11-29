@@ -6,6 +6,7 @@ use Controllers as C;
 
 $controller = new C\HomeController();
 
+
 function renderTableProducts($controller)
 {
     foreach ($controller->getAllProducts() as $product) {
@@ -70,7 +71,9 @@ function renderTableProducts($controller)
                 renderTableProducts($controller);
                 ?>
             </section>
-
+            <?php $controller->updateTableById("photo", 5, "base_price", "301");
+             $controller->updateTableById("photo", 5, "base_price", "401") ;
+            ?>
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
                 I'm bringing the Slavic spirit to my new venture,

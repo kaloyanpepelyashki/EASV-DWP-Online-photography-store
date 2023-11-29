@@ -115,30 +115,31 @@ class DatabaseClient
         }
     }
 
-    public function testMethod(string $table)
+    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
-        try {
-            $query = "SELECT * FROM $table";
+            try {
+            $query = "UPDATE $table SET $columnToUpdate=$newValue WHERE id=$idToUpdate";
 
             $result = pg_query($this->dbConnection, $query);
 
             if (!$result) {
-                die("Query failed: " . pg_last_error());
+                die("Query failed, update table by id" . pg_last_error());
             }
+
             $data = pg_fetch_all($result);
 
             // Free the result set
             pg_free_result($result);
 
-            // Close the database connection
-            // pg_close($this->dbConnection);
 
             return $data;
 
-        } catch (\Exception $e) {
-            echo "Error retreiving data: {$e->getMessage()}";
-            throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
+
+        } catch (\PDOException $e) {
+            echo "Error updating data: {$e->getMessage()}";
+            throw new \RuntimeException("Error updating data: {$e->getMessage()}", $e->getCode(), $e);
         }
+
     }
 
 }

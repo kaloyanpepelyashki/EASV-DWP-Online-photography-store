@@ -22,5 +22,7 @@ class ProductsModel extends DatabaseClient
         return DatabaseClient::getInstance()->getSpecificID_FromTable("photo", $id);
     }
 
+    
+
 
 }
