@@ -22,14 +22,14 @@ function renderTableProducts($controller)
 <html lang="en">
 
 <head>
-    <?php include 'Components/head.php'; ?>
+    <?php include 'head.php'; ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 
 <body>
-    <?php include 'Components/nav-bar.php'; ?>
+    <?php include 'nav-bar.php'; ?>
 
     <main>
 
@@ -97,15 +97,109 @@ function renderTableProducts($controller)
             </p>
             <p class="reveal">PS: No cookies — just creativity!</p>
             <hr class="reveal" />
+
+            <article id="contact">
+                <section class="wrapper-standard">
+                  <section class="contact-form-section">
+                    <hr class="reveal" />
+                    <h1 class="reveal">Contact</h1>
+                    <form
+                      id="contactForm"
+                      action="https://formsubmit.co/2007080c2cf8bd2ebb68506e7aa98c5f"
+                      method="POST"
+                      novalidate
+                      enctype="multipart/form-data"
+                    >
+                      <!-- Email invisibility -->
+                      <div class="grid-container contact-form fifty-fifty reveal">
+                        <div class="grid-item">
+                          <p><label for="email">Email * </label></p>
+                          <input
+                            type="email"
+                            id="email"
+                            name="Email"
+                            placeholder=""
+                            required
+                            autocomplete="email"
+                          />
+                          <br />
+                          <p><label for="name">Name *</label></p>
+                          <input
+                            required
+                            type="text"
+                            id="name"
+                            name="Name"
+                            placeholder=""
+                            autocomplete="name"
+                          />
+        
+                          <br />
+                        </div>
+                        <div class="grid-item">
+                          <p><label for="subject">Subject * </label></p>
+                          <input
+                            type="text"
+                            id="subject"
+                            name="_subject"
+                            required
+                            placeholder=""
+                          />
+                          <br />
+                          <p><label for="company">Company (optional)</label></p>
+                          <input
+                            type="text"
+                            id="company"
+                            name="Company"
+                            placeholder=""
+                            autocomplete="work"
+                          />
+                          <br />
+                        </div>
+                      </div>
+                      <div class="reveal">
+                        <p><label for="message">Message * </label></p>
+                        <textarea
+                          minlength="10"
+                          name="Message"
+                          rows="7"
+                          id="message"
+                          required
+                          placeholder=""
+                        ></textarea>
+                        <br />
+                        <br />
+        
+                        <div class="btn-area flex-center">
+                          <button id="btn" class="submit-btn" type="submit">
+                            Submit contact form
+                          </button>
+                          <div class="btn-shadow"></div>
+                        </div>
+                        <input
+                          type="hidden"
+                          name="_captcha"
+                          value="true"
+                        /><!-- Spam captcha deactivation -->
+                        <input
+                          type="hidden"
+                          name="_next"
+                          value="https://adamsochorec.com/success"
+                        />
+                        <!-- Redirect to the success page -->
+                      </div>
+                    </form>
+                  </section>
+                </section>
+              </article>
         </article>
         <!--PRODUCT LIST ENDS HERE-->
         
         <!--EMAIL FORM-->
-        <?php include 'Components/email-form.php'; ?>
+        <?php include 'email-form.php'; ?>
 
     </main>
     <!--FOOTER-->
-    <?php include 'Components/footer.php'; ?>
+    <?php include 'footer.php'; ?>
     
 </body>
 
