@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php include 'assets/components/head.php'; ?>
+    <?php include 'components/head.php'; ?>
     <title>Page Not Found | Adam Sochorec</title>
 
     <meta name="robots" content="noindex" />
@@ -10,7 +10,7 @@
 
   <body id="error" class="noindex">
     <!-- HEADER START -->
-    <?php include 'assets/components/nav-bar.php'; ?>
+    <?php include 'components/nav-bar.php'; ?>
     <!-- HEADER END -->
     <main>
       <article class="wrapper-narrow flex-center">
@@ -39,7 +39,7 @@
     ></script>
     <!-- LOTTIE PLAYER SCRIPT END -->
     <!-- FOOTER START -->
-    <?php include 'assets/components/footer.php'; ?>
+    <?php include 'components/footer.php'; ?>
     <!-- FOOTER END -->
   </body>
 </html>

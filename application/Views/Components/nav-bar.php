@@ -27,8 +27,7 @@
   </div>
 </header>
 <!-- LOADER START -->
-<aside class="blur loader-container">
+<!-- <aside class="blur loader-container">
   <div class="loader"></div>
-</aside>
-
+</aside> -->
 <!-- LOADER END -->

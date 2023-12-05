@@ -30,10 +30,11 @@ function renderTableProducts($controller)
 
 <body>
     <?php include 'Components/nav-bar.php'; ?>
-    <h1>This is home page</h1>
 
     <main>
-        <article class="wrapper-wide">
+
+        <!--NEWS STARTS HERE-->
+        <article class="wrapper-wide" style="margin-top:8rem;">
             <div class="pathname-container"></div>
             <div class="grid-container fifty-fifty">
                 <div class="grid-item">
@@ -54,12 +55,14 @@ function renderTableProducts($controller)
                 </div>
             </div>
             <hr class="reveal" />
-            <!-- PRODUCTS SECTION START -->
-
+            
         </article>
-        <!-- PRODUCTS SECTION END -->
-        <!-- ABOUT START -->
+        <!--NEWS ENDS HERE-->
+        
+
+
         <hr class="semi" />
+        <!--PRODUCT LIST STARTS HERE-->
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
@@ -74,6 +77,7 @@ function renderTableProducts($controller)
             <?php $controller->updateTableById("photo", 5, "base_price", "301");
              $controller->updateTableById("photo", 5, "base_price", "401") ;
             ?>
+            
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
                 I'm bringing the Slavic spirit to my new venture,
@@ -94,10 +98,16 @@ function renderTableProducts($controller)
             <p class="reveal">PS: No cookies — just creativity!</p>
             <hr class="reveal" />
         </article>
-        <!-- CONTACT FORM END -->
+        <!--PRODUCT LIST ENDS HERE-->
+        
+        <!--EMAIL FORM-->
+        <?php include 'Components/email-form.php'; ?>
+
     </main>
-    <!-- <?php /* include 'Components/footer.php'; */?> -->
-    <script src="assets/autoload.js"></script>
+    <!--FOOTER-->
+    <?php include 'Components/footer.php'; ?>
+    
 </body>
 
+    <script src="/Views/assets/autoload.js"></script>
 </html>
