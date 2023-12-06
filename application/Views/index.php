@@ -33,11 +33,12 @@ function renderTableProducts($controller)
 </head>
 
 <body>
-    <?php include 'Components/nav-bar.php'; ?>
-    <h1>This is home page</h1>
+    <?php include 'nav-bar.php'; ?>
 
     <main>
-        <article class="wrapper-wide">
+
+        <!--NEWS STARTS HERE-->
+        <article class="wrapper-wide" style="margin-top:8rem;">
             <div class="pathname-container"></div>
             <div class="grid-container fifty-fifty">
                 <div class="grid-item">
@@ -64,6 +65,7 @@ function renderTableProducts($controller)
         <!-- PRODUCTS SECTION END -->
         <!-- ABOUT START -->
         <hr class="semi" />
+        <!--PRODUCT LIST STARTS HERE-->
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
@@ -190,5 +192,7 @@ function renderTableProducts($controller)
         });
     </script>
 </body>
+
+<script src="/Views/assets/autoload.js"></script>
 
 </html>

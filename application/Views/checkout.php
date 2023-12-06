@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php include 'assets/components/head.php'; ?>
+    <?php include 'head.php'; ?>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Product details | Adam Sochorec</title>
@@ -9,7 +9,7 @@
   <body id="store-checkout" class="store">
     <meta name="robots" content="noindex" />
     <meta name="googlebot" content="noindex" />
-    <?php include 'assets/components/nav-bar.php'; ?>
+    <?php include 'nav-bar.php'; ?>
     <main>
       <article class="wrapper-wide">
         <div class="pathname-container"></div>
@@ -274,6 +274,6 @@
         <hr class="reveal" />
       </article>
     </main>
-    <?php include 'assets/components/footer.php'; ?>
+    <?php include 'footer.php'; ?>
   </body>
 </html>

@@ -16,10 +16,8 @@ $controller = new C\HomeController();
 <html lang="en">
 
 <head>
-  <?php
-  $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-  include $IPATH . 'head.php';
-  ?>
+  <?php include 'head.php'; ?>
+
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <title>Product details | Adam Sochorec</title>

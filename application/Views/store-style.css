@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "SF Pro Regular";
+  src: url(SFProDisplay-Regular.woff) format("woff"),
+    url(SFProDisplay-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SF Pro Light";
+  src: url(SFProDisplay-Light.woff) format("woff"),
+    url(SFProDisplay-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "IBM";
+  font-weight: var(--heading-weight);
+  src: url(IBM.ttf) format("truetype");
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
