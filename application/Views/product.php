@@ -109,7 +109,7 @@ $controller = new C\HomeController();
           <div class="swiper-slide">
             <?php
             $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-            include $IPATH . 'product-component.php';
+            include $IPATH . 'Components/product-component.php';
             ?>
           </div>
           <div class="swiper-slide">

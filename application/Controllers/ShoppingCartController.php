@@ -5,9 +5,6 @@ namespace Controllers;
 use Models as M;
 
 include_once(__DIR__ . '/../Models/ShoppingCart.php');
-
-var_dump($_SERVER['REQUEST_METHOD']);
-
 //THIS CONTROLLER HANDLES ALL OF THE ASYNC HTTP RESQUEST TO SHOPPING CART
 class ShoppingCartController
 {

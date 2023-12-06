@@ -33,7 +33,7 @@ function renderTableProducts($controller)
 </head>
 
 <body>
-    <?php include 'nav-bar.php'; ?>
+    <?php include 'Components/nav-bar.php'; ?>
 
     <main>
 
@@ -192,7 +192,7 @@ function renderTableProducts($controller)
         });
     </script>
 </body>
-
+<?php include_once("Components/footer.php"); ?>
 <script src="/Views/assets/autoload.js"></script>
 
 </html>
