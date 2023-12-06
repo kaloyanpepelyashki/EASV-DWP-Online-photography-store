@@ -6,6 +6,7 @@ use Models as M;
 include_once(__DIR__ . '/../Models/DatabaseClient.php');
 include_once(__DIR__ . '/../Models/ProductsModel.php');
 include_once(__DIR__ . '/../Models/ShopAbout.php');
+include_once(__DIR__ . '/../Models/ShoppingCart.php');
 
 
 class HomeController
@@ -15,11 +16,14 @@ class HomeController
 
     private $shopInfoModel;
 
+    private $shoppingCart;
+
     public function __construct()
     {
         $this->dBClient = M\DatabaseClient::getInstance();
         $this->productsModel = new M\ProductsModel();
         $this->shopInfoModel = new M\ShopAbout();
+        $this->shoppingCart = M\ShoppingCart::getInstance();
     }
 
     public function getDatabaseClient()
@@ -37,16 +41,19 @@ class HomeController
         return $this->productsModel->getProduct_ById($id);
     }
 
+    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
+    {
+        return $this->dBClient->updateTableById($table, $idToUpdate, $columnToUpdate, $newValue);
+    }
+
     public function getShopInfo()
     {
         return $this->shopInfoModel;
     }
 
-    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue) 
+    public function getShoppingCartItems()
     {
-        return $this->dBClient->updateTableById($table, $idToUpdate, $columnToUpdate, $newValue);
+        return $this->shoppingCart->getCartItems();
     }
-
-
 
 }

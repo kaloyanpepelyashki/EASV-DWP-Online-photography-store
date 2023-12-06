@@ -9,6 +9,7 @@ get('/', './Views/index.php');
 
 get("/product", "./Views/product.php");
 
-get("/productsDemo", "./Views/product.php");
+post("/shoppingCart", "./Controllers/ShoppingCartController.php");
+get("/shoppingCart", "./Controllers/ShoppingCartController.php");
 
 any('/404', './Views/404.php');

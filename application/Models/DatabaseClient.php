@@ -5,6 +5,7 @@ namespace Models;
 
 
 //Class that holds all of the interaction with database
+//!!SINGLETON CLASS!!
 //DON'T INSTANTIATE WITH "new DatabaseClient()";
 //Instead use "DatabaseClient::getInstance()";
 class DatabaseClient
@@ -117,7 +118,7 @@ class DatabaseClient
 
     public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
-            try {
+        try {
             $query = "UPDATE $table SET $columnToUpdate=$newValue WHERE id=$idToUpdate";
 
             $result = pg_query($this->dbConnection, $query);

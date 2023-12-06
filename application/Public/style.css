@@ -2600,17 +2600,7 @@ footer .footer-ps span:nth-child(2) {
   #cybersecurity .btn-area input {
     height: 40px;
   }
-  /*
-  .btn-area #btn,
-  .btn-shadow {
-    width: calc(100% - 1.5px);
-  }
-  .btn-area #btn,
-  .btn-area #btn:after,
-  .btn-shadow {
-    font-size: 11px;
-  }
-  */
+
   #cybersecurity .btn-area input,
   #cybersecurity .btn-area input::placeholder,
   #password-strength-form input[type="password"],
@@ -2716,34 +2706,4 @@ footer .footer-ps span:nth-child(2) {
     display: block;
     clear: both;
   }
-  /*
-  #cybersecurity .img-fill:hover,
-  #prints img:hover,
-  .blog-item img:hover,
-  .blog-item #map:hover {
-    transform: scale(1.2);
-  }
-  #cybersecurity .img-fill,
-  #cybersecurity .img-fill:hover,
-  #prints img,
-  #prints img:hover,
-  .blog-item .img img,
-  .blog-item .img img:hover,
-  .blog-item #map,
-  .blog-item #map:hover {
-    transition: var(--transition-3);
-    -webkit-transition: var(--transition-3);
-    z-index: 999;
-  }
-  #cybersecurity .img-fill:hover,
-  .blog-item .img img:hover,
-  .blog-item #map:hover {
-    box-shadow: rgba(0, 0, 0, 0.56) 0 22px 70px 4px;
-  }
-  */
-  .hide {
-    display: none;
-  }
 }
-
-/* MEDIA QERRIES END */
