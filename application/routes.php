@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 // The output -> Index
 get('/', './Views/index.php');
 
-get("/product", "./Views/product.php");
+get("/product/productid", "./Views/product.php");
 
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");
 get("/shoppingCart", "./Controllers/ShoppingCartController.php");

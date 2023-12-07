@@ -56,4 +56,9 @@ class HomeController
         return $this->shoppingCart->getCartItems();
     }
 
+    public function getLatestProduct()
+    {
+        return $this->productsModel->getLatestProduct();
+    }
+
 }

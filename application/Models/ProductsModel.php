@@ -22,7 +22,34 @@ class ProductsModel extends DatabaseClient
         return DatabaseClient::getInstance()->getSpecificID_FromTable("photo", $id);
     }
 
-    
+    public function getLatestProduct()
+    {
+        $currentDate = new \DateTime();
+        $closestProduct = null;
+        $mindifference = PHP_INT_MAX;
+
+
+        foreach ($this->allProducts as $product) {
+            $productDate = new \DateTime($product['published_at']);
+            $difference = abs($productDate->diff($currentDate)->days);
+            if ($difference < $mindifference) {
+                $closestProduct = $product;
+                $mindifference = $difference;
+            }
+
+            if ($closestProduct !== null) {
+                return $closestProduct;
+            }
+        }
+
+        // foreach ($this->allProducts as $product) {
+        //     if ($product['published_at'] === $closestDate) {
+        //         return $product['name'];
+        //     }
+        // }
+    }
+
+
 
 
 }

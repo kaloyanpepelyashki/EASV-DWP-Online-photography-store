@@ -6,7 +6,8 @@ include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
 use Controllers as C;
 
 $controller = new C\HomeController();
-
+//Geting the object of the latest uploaded photo 
+$latestProduct = $controller->getLatestProduct();
 
 function renderTableProducts($controller)
 {
@@ -14,7 +15,8 @@ function renderTableProducts($controller)
         $productId = $product["id"];
         $productName = $product["name"];
         $productUrl = $product["url"];
-        echo "<div class='grid-item' id='product-component'><a href='/store/product'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>$productName</h3><p>From 300 DKK</p><a href='./product' class='cta cta-2 flex-center'>Buy</a></div></div>";
+        $productPrice = $product["base_price"];
+        echo "<div class='grid-item' id='product-component'><a href='/product/productid?id=$productId'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>$productName</h3><p>From $productPrice DKK</p><a href='/product/productid?id=$productId' class='cta cta-2 flex-center'>Buy</a></div></div>";
     }
 }
 
@@ -44,17 +46,16 @@ function renderTableProducts($controller)
                 <div class="grid-item">
                     <h1 class="reveal">Recently published</h1>
                     <p class="reveal">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui
-                        voluptatem blanditiis expedita omnis corrupti id rem perspiciatis
-                        possimus, cumque cum optio ut illo incidunt laborum ad magnam est,
-                        architecto dignissimos.
+                        <?php echo $latestProduct['description'] ?>
                     </p>
-                    <a href="./product" class="cta flex-center hideCTA-max reveal">Learn more
+                    <a href="/product/productid?id=<?php echo intval($latestProduct['id']) ?>"
+                        class="cta flex-center hideCTA-max reveal">Learn more
                     </a>
                 </div>
                 <div class="grid-item v-stretch reveal">
-                    <img src="/img/2021-04-13-00596.jpg" />
-                    <a href="./product" class="cta flex-center hideCTA-min reveal">Learn more
+                    <img src="<?php echo $latestProduct['url'] ?>" />
+                    <a href="/product/productid?id=<?php echo intval($latestProduct['id']) ?>"
+                        class="cta flex-center hideCTA-min reveal">Learn more
                     </a>
                 </div>
             </div>
@@ -69,14 +70,6 @@ function renderTableProducts($controller)
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
-            <?php
-            var_dump($controller->getShoppingCartItems());
-
-            var_dump($_SESSION['cart']);
-            ?>
-
-
-
 
             <!-- THE GRID THAT HOLDS THE PRODUCTS -->
             <button onclick="addToCart('kikiriki')">Add to cart</button>

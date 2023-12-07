@@ -1,14 +1,14 @@
 <?php
+namespace Models;
 
-
-class PhotoModel
+class Photo
 {
-    public string $descriptions;
-    public string $name;
-    public string $url;
+    protected string $descriptions;
+    protected string $name;
+    protected string $url;
     //write a method to convert to data-time object when used
-    public string $publishedAt;
-    public float $basePrice;
+    protected string $publishedAt;
+    protected float $basePrice;
 
     public function __construct(string $name, string $url, string $publishedAt, float $basePrice)
     {
@@ -17,8 +17,6 @@ class PhotoModel
         $this->publishedAt = $publishedAt;
         $this->basePrice = $basePrice;
     }
-
-
 
 
 }
