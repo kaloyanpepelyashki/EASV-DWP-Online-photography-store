@@ -11,5 +11,6 @@ get("/product/productid", "./Views/product.php");
 
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");
 get("/shoppingCart", "./Controllers/ShoppingCartController.php");
+post("/sendEmail", "./Controllers/EmailSenderController.php");
 
 any('/404', './Views/404.php');

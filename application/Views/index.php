@@ -61,9 +61,17 @@ function renderTableProducts($controller)
             </div>
             <hr class="reveal" />
             <!-- PRODUCTS SECTION START -->
-
+            <section class="product-grid">
+                <!-- GRID ELEMENT -->
+                <?php
+                //The function that outputs the product template for each item from the database
+                renderTableProducts($controller);
+                ?>
+            </section>
         </article>
         <!-- PRODUCTS SECTION END -->
+
+        <?php include_once("Components/email-form.php"); ?>
         <!-- ABOUT START -->
         <hr class="semi" />
         <!--PRODUCT LIST STARTS HERE-->
@@ -74,13 +82,7 @@ function renderTableProducts($controller)
             <!-- THE GRID THAT HOLDS THE PRODUCTS -->
             <button onclick="addToCart('kikiriki')">Add to cart</button>
             <div id=" shoppingCartFrontEnd"></div>
-            <section class="product-grid">
-                <!-- GRID ELEMENT -->
-                <?php
-                //The function that outputs the product template for each item from the database
-                renderTableProducts($controller);
-                ?>
-            </section>
+
 
             <p class="reveal">
                 Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
@@ -104,7 +106,7 @@ function renderTableProducts($controller)
         </article>
         <!-- CONTACT FORM END -->
     </main>
-    <script>
+    <!-- <script>
         //THIS JS CODE IS TO BE MOVED TO A INDIVIDUAL FILE
 
 
@@ -183,6 +185,50 @@ function renderTableProducts($controller)
             }
             fetchFromCart();
         });
+    </script> -->
+
+    <script src="../Public/cartInteractions.js"></script>
+    <script>
+    function sendEmail() {
+        let email = document.getElementById("email").value;
+        let name = document.getElementById("name").value;
+        let subject = document.getElementById("subject").value;
+        let message = document.getElementById("message").value;
+        let company = document.getElementById("company").value;
+
+        if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
+            window.alert("Please fill out all fields");
+
+        } else {
+            let emailObject = {
+                email: email,
+                name: name,
+                subject: subject,
+                message: message,
+                company: company.length > 0 ?? company | "none",
+            }
+
+            try {
+                const xlr = new XMLHttpRequest();
+                xlr.open("POST", "/sendEmail?action=send", true);
+                xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
+
+                xlr.onreadystatechange = function() {
+                    if (xlr.readyState == 4) {
+                        responeText = xlr.responseText;
+
+                        console.log(responeText);
+                        if (xlr.status == 200) {
+                            console.log("email sent successfully");
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Error sending email :" + e.message);
+            }
+        }
+    }
     </script>
 </body>
 <?php include_once("Components/footer.php"); ?>
