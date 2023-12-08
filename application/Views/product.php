@@ -7,10 +7,10 @@ use Controllers as C;
 
 $id;
 if (isset($_GET['id'])) {
-  //Gets the id parameter from url 
-  $id = $_GET['id'];
+    //Gets the id parameter from url 
+    $id = $_GET['id'];
 } else {
-  echo "No Id was set";
+    echo "No Id was set";
 }
 $controller = new C\ProductOverviewController($id);
 
@@ -34,14 +34,15 @@ $product = $controller->getProduct()[0];
 
 <body id="store-product" class="store">
     <?php
-  // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-  // include $IPATH . 'nav-bar.php';
-  
-  // var_dump($controller->getShoppingCartItems());
-  ?>
+    // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+    // include $IPATH . 'nav-bar.php';
+    
+    // var_dump($controller->getShoppingCartItems());
+    ?>
     <main>
         <article class="wrapper-wide">
-            <h1>#<?php echo $product['name']; ?>
+            <h1>#
+                <?php echo $product['name']; ?>
             </h1>
             <div class="pathname-container">
                 <p>
@@ -60,7 +61,7 @@ $product = $controller->getProduct()[0];
                         <div class="swiper-wrapper">
                             <!-- Slides -->
                             <div class="swiper-slide">
-                                <img src="" />
+                                <img src="<?php echo $product['url'] ?>" />
                             </div>
                             <div class="swiper-slide">
                                 <img src="./prints/21071948976502.jpg" />
@@ -123,9 +124,9 @@ $product = $controller->getProduct()[0];
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <?php
-            $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-            include $IPATH . 'Components/product-component.php';
-            ?>
+                        $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+                        include $IPATH . 'Components/product-component.php';
+                        ?>
                     </div>
                     <div class="swiper-slide">
                         <?php include 'Components/product-component.php'; ?>
@@ -142,18 +143,18 @@ $product = $controller->getProduct()[0];
                     </div>
                     <div class="swiper-slide">
                         <?php
-            $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-            include $IPATH . 'product-component.php';
-            ?>
+                        $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
+                        include $IPATH . 'product-component.php';
+                        ?>
                     </div>
                 </div>
             </div>
         </article>
     </main>
     <?php
-  // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/Components/';
-  include 'Components/footer.php';
-  ?>
+    // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/Components/';
+    include 'Components/footer.php';
+    ?>
 </body>
 
 </html>

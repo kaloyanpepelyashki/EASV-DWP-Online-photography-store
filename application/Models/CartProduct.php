@@ -10,5 +10,7 @@ class CartProduct
     private M\Photo $photo;
     private $frame;
 
+    private $size;
+    private $material;
 
 }
