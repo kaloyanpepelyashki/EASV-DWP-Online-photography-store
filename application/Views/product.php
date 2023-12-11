@@ -93,13 +93,11 @@ $product = $controller->getProduct()[0];
                     <select id="material" name="material" required>
                         <option value="" selected>Select material &#8250;</option>
                         <option value="glossy-paper">Glossy photo paper</option>
-                        <option value="canvas">Canvas</option>
                     </select>
                     <select id="frame" name="frame" required>
                         <option value="" selected>Select frame &#8250;</option>
                         <option value="none">None</option>
                         <option value="wood">Wood</option>
-                        <option value="aluminium">Aluminium</option>
                     </select>
                     <a href="/store/checkout" class="cta flex-center">Add to cart</a>
                 </div>
