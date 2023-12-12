@@ -26,10 +26,10 @@ class ShoppingCartController
                 switch ($_POST['action']) {
                     case 'add':
                         //Triggers the ShoppingCart addToCartMethod();
-                        $item = $_POST['item'];
+                        $item = json_decode($_POST['item']);
                         M\ShoppingCart::getInstance()->addToCart($item);
-                        echo "Item added to cart $item";
-                        break;
+                        header("Location: /", true, 301);
+                        exit();
                     case 'remove':
                         $this->shoppingCart->removeFromCart($_POST['item']);
                         break;

@@ -1,12 +1,36 @@
 const shoppingCartFrontEnd = document.getElementById("shoppingCartFrontEnd");
 
+// function addToCart(item) {
+//   try {
+//     xlr = new XMLHttpRequest();
+//     xlr.open("POST", "/shoppingCart", true);
+//     xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     xlr.send(`action=add&item=${encodeURIComponent(item)}`);
+
+//     xlr.onreadystatechange = function () {
+//       if (this.readyState === 4) {
+//         console.log(`XLR Status: ${(this.status, this.responseText)}`);
+
+//         console.log("Item added to cart");
+//         if (this.status === 200) {
+//           console.log(xlr.responseText);
+//         }
+//       } else {
+//         console.error("Error, failed to add to cart");
+//       }
+//     };
+//   } catch (e) {
+//     console.log(`Error adding to cart: ${e.message}`);
+//   }
+// }
+
 function addToCart(item) {
+  console.log(item);
   try {
     xlr = new XMLHttpRequest();
     xlr.open("POST", "/shoppingCart", true);
     xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xlr.send(`action=add&item=${encodeURIComponent(item)}`);
-
+    xlr.send(`action=add&item=${encodeURIComponent(JSON.stringify(item))}`);
     xlr.onreadystatechange = function () {
       if (this.readyState === 4) {
         console.log(`XLR Status: ${(this.status, this.responseText)}`);
@@ -14,6 +38,9 @@ function addToCart(item) {
         console.log("Item added to cart");
         if (this.status === 200) {
           console.log(xlr.responseText);
+          xlr.responeText;
+          console.log("external file");
+          window.location.href = "/";
         }
       } else {
         console.error("Error, failed to add to cart");

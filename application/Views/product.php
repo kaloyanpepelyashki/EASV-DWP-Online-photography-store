@@ -154,32 +154,7 @@ $product = $controller->getProduct();
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/Components/';
     include 'Components/footer.php';
     ?>
-    <script>
-        function addToCart(item) {
-            console.log(item);
-            try {
-
-                xlr = new XMLHttpRequest();
-                xlr.open("POST", "/shoppingCart", true);
-                xlr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xlr.send(`action=add&item=${item}`);
-                xlr.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                        console.log(`XLR Status: ${(this.status, this.responseText)}`);
-
-                        console.log("Item added to cart");
-                        if (this.status === 200) {
-                            console.log(xlr.responseText);
-                        }
-                    } else {
-                        console.error("Error, failed to add to cart");
-                    }
-                };
-            } catch (e) {
-                console.log(`Error adding to cart: ${e.message}`);
-            }
-        }
-    </script>
+    <script src="../Public/cartInteractions.js"></script>
 </body>
 
 </html>

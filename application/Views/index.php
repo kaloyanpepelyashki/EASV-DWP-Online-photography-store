@@ -78,9 +78,6 @@ function renderTableProducts($controller)
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
-
-            <!-- THE GRID THAT HOLDS THE PRODUCTS -->
-            <button onclick="addToCart('kikiriki')">Add to cart</button>
             <div id=" shoppingCartFrontEnd"></div>
 
 
@@ -106,129 +103,48 @@ function renderTableProducts($controller)
         </article>
         <!-- CONTACT FORM END -->
     </main>
-    <!-- <script>
-        //THIS JS CODE IS TO BE MOVED TO A INDIVIDUAL FILE
-
-
-        const shoppingCartFrontEnd = document.getElementById("shoppingCartFrontEnd");
-
-        function addToCart(item) {
-            try {
-                xlr = new XMLHttpRequest();
-                xlr.open("POST", "/shoppingCart", true);
-                xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xlr.send(`action=add&item=${encodeURIComponent(item)}`);
-
-                xlr.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                        console.log(`XLR Status: ${this.status, this.responseText}`);
-                        cartItems.push(item);
-
-                        console.log("Item added to cart")
-                        if (this.status === 200) {
-                            console.log(xlr.responseText);
-                        }
-
-                    } else {
-                        console.error("Error, failed to add to cart");
-                    }
-                };
-
-
-            } catch (e) {
-                console.log(`Error adding to cart: ${e.message}`);
-
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            function fetchFromCart() {
-                try {
-                    xlr = new XMLHttpRequest();
-                    xlr.open("GET", "/shoppingCart?action=get", true);
-                    xlr.setRequestHeader("Content-Type", "application/json");
-                    xlr.send();
-
-                    xlr.onreadystatechange = () => {
-
-                        if (xlr.status === 200) {
-                            try {
-                                const responseText = xlr.responseText;
-                                //Regular Expression to escape in the responseText.
-                                const regex2 = /<pre.*?>([\s\S]*?)<\/pre>/s;
-
-                                //Escaping the regex found in the responseText string
-                                let escapedString = responseText.replace(regex2, "\$2").replace("$2", " ")
-                                if (escapedString && escapedString.length >= 1) {
-
-                                    //Parsing the escaped string to JSON
-                                    let parsed = JSON.parse(escapedString);
-                                    parsed.forEach((item) => {
-                                        console.log(item)
-                                    })
-                                } else {
-                                    console.error('Failed to extract array from response');
-                                }
-                            } catch (e) {
-                                console.error("Error parsing JSON: " + e.message);
-                                console.log("Response in plain text: " + xlr.responseText);
-                            }
-                        } else {
-                            console.error("Could not get cart items. Status: " + xlr.status)
-                        }
-
-                    }
-
-                } catch (e) {
-                    console.error("Error getting cart items: " + e.message);
-                }
-            }
-            fetchFromCart();
-        });
-    </script> -->
-
     <script src="../Public/cartInteractions.js"></script>
     <script>
-    function sendEmail() {
-        let email = document.getElementById("email").value;
-        let name = document.getElementById("name").value;
-        let subject = document.getElementById("subject").value;
-        let message = document.getElementById("message").value;
-        let company = document.getElementById("company").value;
+        function sendEmail() {
+            let email = document.getElementById("email").value;
+            let name = document.getElementById("name").value;
+            let subject = document.getElementById("subject").value;
+            let message = document.getElementById("message").value;
+            let company = document.getElementById("company").value;
 
-        if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
-            window.alert("Please fill out all fields");
+            if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
+                window.alert("Please fill out all fields");
 
-        } else {
-            let emailObject = {
-                email: email,
-                name: name,
-                subject: subject,
-                message: message,
-                company: company.length > 0 ?? company | "none",
-            }
+            } else {
+                let emailObject = {
+                    email: email,
+                    name: name,
+                    subject: subject,
+                    message: message,
+                    company: company.length > 0 ?? company | "none",
+                }
 
-            try {
-                const xlr = new XMLHttpRequest();
-                xlr.open("POST", "/sendEmail?action=send", true);
-                xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
+                try {
+                    const xlr = new XMLHttpRequest();
+                    xlr.open("POST", "/sendEmail?action=send", true);
+                    xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
 
-                xlr.onreadystatechange = function() {
-                    if (xlr.readyState == 4) {
-                        responeText = xlr.responseText;
+                    xlr.onreadystatechange = function () {
+                        if (xlr.readyState == 4) {
+                            responeText = xlr.responseText;
 
-                        console.log(responeText);
-                        if (xlr.status == 200) {
-                            console.log("email sent successfully");
+                            console.log(responeText);
+                            if (xlr.status == 200) {
+                                console.log("email sent successfully");
+                            }
                         }
                     }
+                } catch (e) {
+                    console.error("Error sending email :" + e.message);
                 }
-            } catch (e) {
-                console.error("Error sending email :" + e.message);
             }
         }
-    }
     </script>
 </body>
 <?php include_once("Components/footer.php"); ?>
