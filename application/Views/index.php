@@ -36,6 +36,7 @@ function renderTableProducts($controller)
 
 <body>
     <?php include 'Components/nav-bar.php'; ?>
+    <?php include 'Components/shopping-cart.php'; ?>
 
     <main>
 

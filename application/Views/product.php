@@ -14,12 +14,7 @@ if (isset($_GET['id'])) {
 }
 $controller = new C\ProductOverviewController($id);
 
-$product = $controller->getProduct();
-
-
-?>
-
-
+$product = $controller->getProduct(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,19 +31,19 @@ $product = $controller->getProduct();
     <?php
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
     // include $IPATH . 'nav-bar.php';
-    
-    // var_dump($controller->getShoppingCartItems());
-    ?>
+    // var_dump($controller->getShoppingCartItems()); ?>
+    <?php include 'Components/shopping-cart.php'; ?>
+
     <main>
         <article class="wrapper-wide">
-            <h1>#
+            <h1>
+                #
                 <?php echo $product->name; ?>
             </h1>
             <div class="pathname-container">
                 <p>
                     <span class="pathname"><a href="/"></a> &#8250; </span>
-                    <span class="pathname"><a href="/store/store">store</a> &#8250;
-                        #
+                    <span class="pathname"><a href="/store/store">store</a> &#8250; #
                         <?php echo $product->name; ?>
                     </span>
                 </p>
@@ -80,7 +75,7 @@ $product = $controller->getProduct();
                 </div>
                 <div class="grid-item">
                     <h2>
-                        <?php echo $product->basePrice; ?>DKK
+                        <?php echo $product->basePrice; ?>
                     </h2>
                     <p>incl. VAT / excl. shipping</p>
                     <select id="size" name="size" required>
@@ -99,8 +94,7 @@ $product = $controller->getProduct();
                         <option value="none">None</option>
                         <option value="wood">Wood</option>
                     </select>
-                    <a onclick='addToCart(<?php echo json_encode($product); ?>)' class="cta flex-center">Add to
-                        cart</a>
+                    <a onclick="addToCart(<?php echo json_encode($product); ?>)" class="cta flex-center">Add to cart</a>
                 </div>
             </div>
             <hr class="reveal" />
@@ -129,7 +123,7 @@ $product = $controller->getProduct();
                     </div>
                     <div class="swiper-slide">
                         <?php include 'Components/product-component.php'; ?>
-                        <img src="<?php echo $product->url; ?>">
+                        <img src="<?php echo $product->url; ?>" />
                     </div>
                     <div class="swiper-slide">
                         <?php include 'assets/components/product-component.php'; ?>
