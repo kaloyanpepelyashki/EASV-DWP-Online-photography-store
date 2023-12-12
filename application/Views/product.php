@@ -80,7 +80,7 @@ $product = $controller->getProduct();
                 </div>
                 <div class="grid-item">
                     <h2>
-                        <?php echo $product->basePrice; ?>
+                        <?php echo $product->basePrice; ?>DKK
                     </h2>
                     <p>incl. VAT / excl. shipping</p>
                     <select id="size" name="size" required>
