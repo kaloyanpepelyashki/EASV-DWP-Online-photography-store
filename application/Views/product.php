@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 }
 $controller = new C\ProductOverviewController($id);
 
-$product = $controller->getProduct()[0];
+$product = $controller->getProduct();
 
 
 ?>
@@ -42,14 +42,14 @@ $product = $controller->getProduct()[0];
     <main>
         <article class="wrapper-wide">
             <h1>#
-                <?php echo $product['name']; ?>
+                <?php echo $product->name; ?>
             </h1>
             <div class="pathname-container">
                 <p>
                     <span class="pathname"><a href="/"></a> &#8250; </span>
                     <span class="pathname"><a href="/store/store">store</a> &#8250;
                         #
-                        <?php echo $product['name']; ?>
+                        <?php echo $product->name; ?>
                     </span>
                 </p>
             </div>
@@ -61,7 +61,7 @@ $product = $controller->getProduct()[0];
                         <div class="swiper-wrapper">
                             <!-- Slides -->
                             <div class="swiper-slide">
-                                <img src="<?php echo $product['url'] ?>" />
+                                <img src="<?php echo $product->url ?>" />
                             </div>
                             <div class="swiper-slide">
                                 <img src="./prints/21071948976502.jpg" />
@@ -80,7 +80,7 @@ $product = $controller->getProduct()[0];
                 </div>
                 <div class="grid-item">
                     <h2>
-                        <?php echo $controller->getProduct()[0]['base_price']; ?>
+                        <?php echo $product->basePrice; ?>
                     </h2>
                     <p>incl. VAT / excl. shipping</p>
                     <select id="size" name="size" required>
@@ -101,7 +101,8 @@ $product = $controller->getProduct()[0];
                         <option value="wood">Wood</option>
                         <option value="aluminium">Aluminium</option>
                     </select>
-                    <a href="/store/checkout" class="cta flex-center">Add to cart</a>
+                    <a onclick='addToCart(<?php echo json_encode($product); ?>)' class="cta flex-center">Add to
+                        cart</a>
                 </div>
             </div>
             <hr class="reveal" />
@@ -130,7 +131,7 @@ $product = $controller->getProduct()[0];
                     </div>
                     <div class="swiper-slide">
                         <?php include 'Components/product-component.php'; ?>
-                        <img src="<?php echo $component->getProduct()[0]['url']; ?>">
+                        <img src="<?php echo $product->url; ?>">
                     </div>
                     <div class="swiper-slide">
                         <?php include 'assets/components/product-component.php'; ?>
@@ -155,6 +156,32 @@ $product = $controller->getProduct()[0];
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/Components/';
     include 'Components/footer.php';
     ?>
+    <script>
+        function addToCart(item) {
+            console.log(item);
+            try {
+
+                xlr = new XMLHttpRequest();
+                xlr.open("POST", "/shoppingCart", true);
+                xlr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xlr.send(`action=add&item=${item}`);
+                xlr.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        console.log(`XLR Status: ${(this.status, this.responseText)}`);
+
+                        console.log("Item added to cart");
+                        if (this.status === 200) {
+                            console.log(xlr.responseText);
+                        }
+                    } else {
+                        console.error("Error, failed to add to cart");
+                    }
+                };
+            } catch (e) {
+                console.log(`Error adding to cart: ${e.message}`);
+            }
+        }
+    </script>
 </body>
 
 </html>

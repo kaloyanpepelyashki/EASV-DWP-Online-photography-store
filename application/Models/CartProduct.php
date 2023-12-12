@@ -13,4 +13,9 @@ class CartProduct
     private $size;
     private $material;
 
+    public function __construct(M\Photo $photo)
+    {
+
+    }
+
 }
