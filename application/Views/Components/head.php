@@ -7,5 +7,5 @@
   href="http://adamsochorec.com/img/favicon.png"
   type="image/png"
 />
-<link rel="stylesheet" href="http://adamsochorec.com/assets/style.css" />
-<link rel="stylesheet" href="http://adamsochorec.com/store/store-style.css" />
+<link rel="stylesheet" href="../../Public/style.css" />
+<link rel="stylesheet" href="../../Public/store-style.css" />
