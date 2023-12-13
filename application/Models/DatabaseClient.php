@@ -143,4 +143,23 @@ class DatabaseClient
 
     }
 
+    public function AuthenticationLogIn($password)
+    {
+        try {
+            $query = "SELECT * FROM administrators WHERE password='$password'";
+
+            $result = pg_query($this->dbConnection, $query);
+
+            $rs = pg_fetch_assoc($result);
+            if (!$rs) {
+                return false;
+            } else {
+                echo $rs;
+            }
+
+        } catch (\PDOException $e) {
+            throw new \RuntimeException("Error authenticating : " . $e->getMessage());
+        }
+    }
+
 }

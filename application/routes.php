@@ -8,6 +8,7 @@ ini_set('display_errors', 1);
 get('/', './Views/index.php');
 
 get("/product/productid", "./Views/product.php");
+get("/login-admin", "./Views/admin-login.php");
 
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");
 get("/shoppingCart", "./Controllers/ShoppingCartController.php");

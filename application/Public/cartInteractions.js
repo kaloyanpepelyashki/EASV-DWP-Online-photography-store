@@ -59,7 +59,7 @@ function outPutResults(itemsArray) {
     console.log(item);
     if (item) {
       let htmlContent = `<div class="grid-container table cart-item">
-    <div class="grid-container fifty-fifty">
+      <div class="grid-container fifty-fifty">
       <div class="grid-item">
         <img src="${item.url}" />
       </div>
