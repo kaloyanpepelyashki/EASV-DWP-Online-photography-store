@@ -34,7 +34,7 @@ function renderTableProducts($controller)
     <title>Document</title>
 </head>
 
-<body>
+<body id="store-index" class="store">
     <?php include 'Components/nav-bar.php'; ?>
     <?php include 'Components/shopping-cart.php'; ?>
 
