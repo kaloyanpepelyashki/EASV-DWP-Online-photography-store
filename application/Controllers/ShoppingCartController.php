@@ -28,8 +28,9 @@ class ShoppingCartController
                         //Triggers the ShoppingCart addToCartMethod();
                         $item = json_decode($_POST['item']);
                         M\ShoppingCart::getInstance()->addToCart($item);
-                        header("Location: /", true, 301);
-                        exit();
+                        // header("Location: /", true, 301);
+                        // exit();
+                        break;
                     case 'remove':
                         $this->shoppingCart->removeFromCart($_POST['item']);
                         break;

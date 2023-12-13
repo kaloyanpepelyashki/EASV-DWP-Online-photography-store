@@ -75,7 +75,7 @@ $product = $controller->getProduct(); ?>
                 </div>
                 <div class="grid-item">
                     <h2>
-                        <?php echo $product->basePrice; ?>
+                        <?php echo $product->basePrice; ?> DKK
                     </h2>
                     <p>incl. VAT / excl. shipping</p>
                     <select id="size" name="size" required>
@@ -94,7 +94,7 @@ $product = $controller->getProduct(); ?>
                         <option value="none">None</option>
                         <option value="wood">Wood</option>
                     </select>
-                    <a onclick="addToCart(<?php echo json_encode($product); ?>)" class="cta flex-center">Add to cart</a>
+                    <a onclick='addToCart(<?php echo json_encode($product); ?>)' class="cta flex-center">Add to cart</a>
                 </div>
             </div>
             <hr class="reveal" />
