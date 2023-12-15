@@ -33,7 +33,7 @@ use Controllers as C;
   </div>
 
   <div class="ctas">
-    <a href="./product" class="cta">Checkout</a>
+    <a href="/checkout" class="cta">Checkout</a>
     <a href="./product" class="cta">My orders</a>
   </div>
 </div>
