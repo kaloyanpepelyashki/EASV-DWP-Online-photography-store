@@ -1,0 +1,36 @@
+function submitForm() {
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+  const endPoint = "/signinAdmin";
+
+  let creditObject = {
+    username: username,
+    password: password,
+  };
+
+  try {
+    console.log("Credit Object : " + creditObject);
+    const xlr = new XMLHttpRequest();
+    xlr.open("POST", endPoint, true);
+    xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xlr.send(
+      `action=signin&creditObject=${encodeURIComponent(
+        JSON.stringify(creditObject)
+      )}`
+    );
+
+    xlr.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          console.log(xlr.responseText);
+        }
+      } else {
+        console.log(this.status);
+        console.log(this.readyState);
+        console.log(xlr.responseText);
+      }
+    };
+  } catch (e) {
+    console.error(e);
+  }
+}

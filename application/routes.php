@@ -10,8 +10,11 @@ get('/', './Views/index.php');
 get("/product/productid", "./Views/product.php");
 get("/login-admin", "./Views/admin-login.php");
 
+
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");
 get("/shoppingCart", "./Controllers/ShoppingCartController.php");
 post("/sendEmail", "./Controllers/EmailSenderController.php");
+
+post("/signinAdmin", "./Controllers/AdminLoginController.php");
 
 any('/404', './Views/404.php');

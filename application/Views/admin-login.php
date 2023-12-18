@@ -36,8 +36,9 @@ $controller = new C\AdminLoginController;
     <main>
         <article class="wrapper-narrow">
             <div class="pathname-container"></div>
-            <?php if ($controller->signIn("testd")) {
-                echo $controller->signIn("testd");
+            <?php
+            if ($controller->signIn("Kon", "testd")) {
+                echo $controller->signIn("Kon", "testd")[0];
                 echo "It is working";
             } else {
                 echo "It is not working";
@@ -45,10 +46,10 @@ $controller = new C\AdminLoginController;
             ?>
             <h1>Admin Login</h1>
             <form action="" method="post">
-                <input placeholder="Username" type="text" name="user" maxlength="30" value="" />
+                <input placeholder="Username" id="username" type="text" name="user" maxlength="30" value="" />
                 <br /><br />
-                <input type="password" placeholder="Password" name="password" maxlength="30" value="" />
-                <input id="submit-btn" type="submit" name="submit" value="Login" />
+                <input type="text" id="password" placeholder="Password" name="password" maxlength="30" />
+                <button onclick="submitForm()" id="submit-btn" type="button" name="submit">OK</button>
             </form>
             <hr class="reveal" />
         </article>
@@ -57,4 +58,5 @@ $controller = new C\AdminLoginController;
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
     // include $IPATH . 'footer.php';
     ?>
+    <script src="../../Public/adminLogIn.js"></script>
 </body>

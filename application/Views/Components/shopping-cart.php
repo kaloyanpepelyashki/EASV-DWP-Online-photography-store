@@ -1,13 +1,3 @@
-<?php
-namespace Views;
-
-use Controllers as C;
-
-// include_once("../Controllers/ShoppingCartController.php");
-
-// $controller = new C\ShoppingCartController;
-?>
-
 <div class="cart-navigation">
   <div class="grid-container table">
     <span class=""><u>Items</u></span><span><u>Quantity</u></span><span><u>Subtotal</u></span>
@@ -37,4 +27,3 @@ use Controllers as C;
     <a href="./product" class="cta">My orders</a>
   </div>
 </div>
-<script src="../../Public/cartInteractions.js"></script>

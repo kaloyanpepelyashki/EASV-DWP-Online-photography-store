@@ -116,6 +116,7 @@ class DatabaseClient
         }
     }
 
+    //Updates a table based on a new value
     public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
         try {
@@ -143,18 +144,25 @@ class DatabaseClient
 
     }
 
-    public function AuthenticationLogIn($password)
+    //Authentication method for authenticating and admin using the database
+    public function AuthenticationLogIn(string $password, string $username): bool
     {
         try {
-            $query = "SELECT * FROM administrators WHERE password='$password'";
+            $query = "SELECT * FROM administrators WHERE password=$1 AND username=$2";
 
-            $result = pg_query($this->dbConnection, $query);
+            $result = pg_query_params($this->dbConnection, $query, array($password, $username));
 
-            $rs = pg_fetch_assoc($result);
-            if (!$rs) {
-                return false;
+            if (!$result) {
+                echo "Error connecting to database" . pg_last_error();
+                die("Error connecting to database" . pg_last_error());
+
             } else {
-                echo $rs;
+                // $numRows = pg_num_rows($result);
+                // echo "Number of rows: $numRows<br>";
+                // $rs = pg_fetch_result($result, 1, 1);
+
+                $row = pg_fetch_assoc($result);
+                return $row !== false;
             }
 
         } catch (\PDOException $e) {
