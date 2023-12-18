@@ -1455,7 +1455,10 @@ source {
 
 .contact-form-section .contact-form input,
 .contact-form-section select,
-.contact-form-section textarea {
+.contact-form-section textarea,
+.store input,
+.store select,
+.store textarea {
   border: none;
   border-radius: var(--border-radius-2);
   padding: 0.8rem;
@@ -1464,7 +1467,10 @@ source {
 .contact-form-section input,
 .contact-form-section select,
 .contact-form-section textarea,
-.contact-form-section::placeholder {
+.contact-form-section::placeholder,
+.store input,
+.store select,
+.store textarea .store::placeholder {
   color: rgba(var(--white-color), 1);
   font-family: var(--content-font);
   font-size: calc(var(--fontsize-p) * 0.9);
@@ -1474,13 +1480,19 @@ source {
 }
 .contact-form-section .contact-form input,
 .contact-form-section .contact-form select,
-.contact-form-section textarea {
+.contact-form-section textarea,
+.store input,
+.store select,
+.store textarea {
   background: rgba(var(--grey-color), 0.8);
   border: none;
 }
 .contact-form-section .contact-form input:focus,
 .contact-form-section .contact-form select:focus,
-.contact-form-section textarea:focus {
+.contact-form-section textarea:focus,
+.store input:focus,
+.store select:focus,
+.store textarea:focus {
   border: none;
   outline: 0;
 }
