@@ -53,6 +53,8 @@ $controller = new C\AdminLoginController;
             </form>
             <hr class="reveal" />
         </article>
+        <br><br><br>
+        <a href="admin-panel"><button>Temporary link to access admin panel</button></a>
     </main>
     <?php
     // $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';

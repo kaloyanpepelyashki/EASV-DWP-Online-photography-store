@@ -114,16 +114,6 @@
                       autocomplete="City"
                     />
                     <br />
-                    <p>
-                      <input
-                        id="adresstype"
-                        name="adresstype"
-                        type="checkbox"
-                      />
-                      <label for="adresstype"
-                        >My billing and shipping address are the same</label
-                      >
-                    </p>
                   </div>
                   <div class="grid-item">
                     <p><label for="email">City *</label></p>
@@ -255,6 +245,16 @@
                     </div>
                   </div>
                 </div>
+                <p>
+                      <input
+                        id="adresstype"
+                        name="adresstype"
+                        type="checkbox"
+                      />
+                      <label for="adresstype"
+                        >My billing and shipping address are the same</label
+                      >
+                    </p>
                 <button class="cta" type="submit">Submit Order</button>
               </form>
               <input
@@ -276,6 +276,6 @@
         <hr class="reveal" />
       </article>
     </main>
-    <?php include 'footer.php'; ?>
+    <?php include 'Components/footer.php'; ?>
   </body>
 </html>
