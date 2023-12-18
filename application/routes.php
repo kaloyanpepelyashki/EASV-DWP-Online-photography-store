@@ -11,6 +11,7 @@ get("/product/productid", "./Views/product.php");
 get("/checkout", "./Views/checkout.php");
 get("/login-admin", "./Views/admin-login.php");
 get("/admin-panel", "./Views/admin-panel.php");
+post("/adminPannelController", "./Controllers/AdminPannelController.php");
 
 
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");

@@ -120,7 +120,7 @@ class DatabaseClient
     public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
         try {
-            $query = "UPDATE $table SET $columnToUpdate=$newValue WHERE id=$idToUpdate";
+            $query = "UPDATE $table SET $columnToUpdate='$newValue' WHERE id=$idToUpdate";
 
             $result = pg_query($this->dbConnection, $query);
 

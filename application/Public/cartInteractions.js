@@ -1,29 +1,3 @@
-// const shoppingCartFrontEnd = document.getElementById("shoppingCartFrontEnd");
-
-// function addToCart(item) {
-//   try {
-//     xlr = new XMLHttpRequest();
-//     xlr.open("POST", "/shoppingCart", true);
-//     xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//     xlr.send(`action=add&item=${encodeURIComponent(item)}`);
-
-//     xlr.onreadystatechange = function () {
-//       if (this.readyState === 4) {
-//         console.log(`XLR Status: ${(this.status, this.responseText)}`);
-
-//         console.log("Item added to cart");
-//         if (this.status === 200) {
-//           console.log(xlr.responseText);
-//         }
-//       } else {
-//         console.error("Error, failed to add to cart");
-//       }
-//     };
-//   } catch (e) {
-//     console.log(`Error adding to cart: ${e.message}`);
-//   }
-// }
-
 function addToCart(item) {
   console.log("item: " + item);
   try {
@@ -58,21 +32,28 @@ function outPutResults(itemsArray) {
   itemsArray.forEach((item) => {
     console.log(item);
     if (item) {
+      //Creates the html output for each element of the shopping cart
       let htmlContent = `<div class="grid-container table cart-item">
       <div class="grid-container fifty-fifty">
       <div class="grid-item">
         <img src="${item.url}" />
       </div>
       <span class="grid-item left">
-        <b>${item.base_price}</b><br />
+        <b>${item.name}</b><br />
         40x60cm<br />Glossy photo paper<br />
         No frame</span>
     </div>
     <span><u></u></span>
-    <span>${item.base_price}DKK</span>
-    <span class="right"><i class="fa-solid fa-trash"></i></span>
-  </div>`;
-      output.append(htmlContent);
+    <span><b>${item.basePrice}</b> DKK</span>
+    <span class="right"><i class="fa-solid fa-trash" style="font-size:15pt"></i></span>
+  </div><hr/>`;
+      // output.innerHTML(htmlContent);
+
+      let newElement = document.createElement("div");
+      newElement.innerHTML = htmlContent;
+
+      // Append the new element to the output container
+      output.appendChild(newElement);
     } else {
       return;
     }
