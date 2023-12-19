@@ -157,9 +157,6 @@
   justify-content: space-between;
 }
 /* ADMIN PANEL */
-* {
-  box-sizing: border-box;
-}
 
 .panel-container {
   float: left;
@@ -217,7 +214,8 @@
   flex-grow: 1;
   overflow-y: scroll;
 }
-.table-orders {
-  color: white;
+/* LOGIN START */
+#login body {
+  background-color: red;
 }
 /* STORE END */

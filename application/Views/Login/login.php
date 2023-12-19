@@ -8,21 +8,18 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <?php include 'head.php'; ?>
 
-<head>
-  <?php
-  $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-  include $IPATH . 'head.php';
-  ?>
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <title>Login | Adam Sochorec</title>
-  <meta name="robots" content="noindex" />
-  <meta name="googlebot" content="noindex" />
-</head>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Login | Adam Sochorec</title>
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+  </head>
 
-<body>
-  <?php
+  <body class="store">
+    <?php
   // START FORM PROCESSING
   if (isset($_POST['submit'])) { // form has been submited
     $username = trim(mysqli_real_escape_string($connection, $_POST['user']));
@@ -39,44 +36,44 @@
         redirect_to("frontpage.php");
       } else {
         // username/password combo was not found in the database
-        $message = "Username/password combination incorrect<br>Please make
-    usre your caps loc key is off and try again.";
-      }
-    }
-  } else { // Form has not been submitted. if (isset($_GET['logout']) && $_GET['logout'] == 1){
-    $message = "Your now logged out.";
-  }
-  if (!empty($message)) {
-    echo "
+        $message = "Username/password combination incorrect<br>Please make usre
+    your caps loc key is off and try again."; } } } else { // Form has not been
+    submitted. if (isset($_GET['logout']) && $_GET['logout'] == 1){ $message =
+    "Your now logged out."; } if (!empty($message)) { echo "
     <p>" . $message . "</p>
-    ";
-  } ?>
+    "; } ?>
 
-  <h2>Please login</h2>
+    <?php include 'nav-bar.php'; ?>
 
-  <?php
-  $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-  include $IPATH . 'nav-bar.php';
-  ?>
-  <main>
-    <article class="wrapper-narrow">
-      <div class="pathname-container"></div>
-      <h1>Admin Login</h1>
-      <form action="" method="post">
-        <input placeholder="Username" type="text" name="user" maxlength="30" value="" />
-        <br /><br />
-        <input type="password" placeholder="Password" name="password" maxlength="30" value="" />
-        <input id="submit-btn" type="submit" name="submit" value="Login" />
-      </form>
-      <hr class="reveal" />
-    </article>
-  </main>
-  <?php
-  $IPATH = $_SERVER['DOCUMENT_ROOT'] . '/assets/components/';
-  include $IPATH . 'footer.php';
-  ?>
-</body>
-
+    <main>
+      <article class="wrapper-narrow">
+        <div class="pathname-container"></div>
+        <h1>Admin Login</h1>
+        <form action="" method="post">
+          <input
+            placeholder="Username"
+            type="text"
+            name="user"
+            maxlength="30"
+            value=""
+          />
+          <br /><br />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            maxlength="30"
+            value=""
+          />
+          <input id="submit-btn" type="submit" name="submit" value="Login" />
+        </form>
+        <hr class="reveal" />
+      </article>
+    </main>
+    <!-- FOOTER START -->
+    <?php include 'footer.php'; ?>
+    <!-- FOOTER END -->
+  </body>
 </html>
 <?php
 if (isset($connection)) {
