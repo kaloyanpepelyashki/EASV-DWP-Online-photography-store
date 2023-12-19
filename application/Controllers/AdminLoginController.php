@@ -36,7 +36,6 @@ class AdminLoginController
         try {
             $hashedPassword = sha1($password);
 
-
             if (!empty($hashedPassword)) {
                 return $this->dbClient->AuthenticationLogIn($hashedPassword, $username);
             } else {
