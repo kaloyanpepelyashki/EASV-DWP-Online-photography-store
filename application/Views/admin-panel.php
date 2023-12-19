@@ -85,10 +85,34 @@ $shopAbout = $controller->getShopAbout();
             <input type="text" id="shopOwnerTel" placeholder="update owner telephone" />
             <button onclick="updateShopOwnerTel()" type="button">Update</button>
         </div>
-
+        <hr />
         <div id="products" class="tabcontent">
             <h3>Products</h3>
             <p>Full CRUD for photos, print types, sizes and frames.</p>
+            <div id="cart-items-output" class="cart-items">
+                <?php
+                foreach ($controller->getAllProducts() as $product) {
+                    $productName = $product['name'];
+                    $productPrice = $product['base_price'];
+                    $productUrl = $product['url'];
+
+                    echo "<div class='grid-container table cart-item'>
+                            <div class='grid-container fifty-fifty'>
+                            <div class='grid-item'>
+                            <img src='$productUrl' />
+                            </div>
+                            <span class='grid-item left'>
+                            <b>$productName</b><br />
+                            40x60cm<br />Glossy photo paper<br />
+                            No frame</span>
+                        </div>
+                        <span><u></u></span>
+                        <span><b>$productPrice</b> DKK</span>
+                        <span class='right'><i class='fa-solid fa-trash' style='font-size:15pt'></i></span>
+                        </div><hr/>";
+                }
+                ?>
+            </div>
         </div>
 
         <div id="daily" class="tabcontent">

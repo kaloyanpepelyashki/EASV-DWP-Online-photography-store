@@ -22,7 +22,12 @@ function submitForm() {
     xlr.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status === 200) {
-          console.log(xlr.responseText);
+          if (xlr.responseText == 1) {
+            window.alert("Success, login successfull");
+            window.location.href = "/admin-panel";
+          } else {
+            window.alert("Not success");
+          }
         }
       } else {
         console.log(this.status);

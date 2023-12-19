@@ -36,6 +36,11 @@ class AdminPannelController
         $this->shopAboutModel->updateShopAboutField("owner_phone", $newValue);
     }
 
+    public function getAllProducts()
+    {
+        return $this->dbClient->getAllFromTable('photo');
+    }
+
     public function getAllOrders()
     {
         return $this->dbClient->getAllFromTable("orders");

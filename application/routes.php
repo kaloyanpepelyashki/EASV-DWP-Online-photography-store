@@ -1,5 +1,14 @@
 <?php
 require_once __DIR__ . '/router.php';
+$sessionStatus = session_status();
+
+// Check if a session is active
+if ($sessionStatus == PHP_SESSION_ACTIVE) {
+    null;
+} else {
+    session_start();
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Static GET
@@ -10,7 +19,18 @@ get('/', './Views/index.php');
 get("/product/productid", "./Views/product.php");
 get("/checkout", "./Views/checkout.php");
 get("/login-admin", "./Views/admin-login.php");
-get("/admin-panel", "./Views/admin-panel.php");
+
+//Dynamically re-renders routes
+$adminRoute;
+if (isset($_SESSION['authState']) && $_SESSION['authState'] == true) {
+    $adminRoute = "./Views/admin-panel.php";
+} elseif ($_SESSION['authState'] == false) {
+    $adminRoute = './Views/404.php';
+}
+//Dynamically re-renders routes
+$adminRoute = isset($_SESSION['authState']) && $_SESSION['authState'] == true ? "./Views/admin-panel.php" : './Views/404.php';
+
+get("/admin-panel", $adminRoute);
 post("/adminPannelController", "./Controllers/AdminPannelController.php");
 
 

@@ -5,6 +5,7 @@ use Models as M;
 
 include_once(__DIR__ . '/../Models/DatabaseClient.php');
 
+
 class AdminLoginController
 {
     private $dbClient;
@@ -12,6 +13,22 @@ class AdminLoginController
     public function __construct()
     {
         $this->dbClient = M\DatabaseClient::getInstance();
+        $this->init();
+    }
+
+    private function init()
+    {
+        //Checks if a session is set
+        if (session_status() == PHP_SESSION_NONE) {
+            //If it's not it starts the session
+            session_start();
+        }
+
+        //Checks if $_SESSION['cart'] is already set
+        if (!isset($_SESSION['authState'])) {
+            //If it is not, it sets it
+            $_SESSION['authState'] = false;
+        }
     }
 
     public function signIn(string $password, string $username): bool
@@ -31,6 +48,27 @@ class AdminLoginController
         }
     }
 
+    //This method updates the authentication state
+    public function setAuthState(string $password, string $username): bool
+    {
+        try {
+            if ($this->signIn($password, $username)) {
+                $_SESSION["authState"] = true;
+                return $this->signIn($password, $username);
+            } else {
+                $_SESSION["authState"] = false;
+                return false;
+            }
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Error authenticating : " . $e->getMessage());
+        }
+    }
+
+    public function getAuthState()
+    {
+        return $_SESSION["authState"];
+    }
+
     public function handleControllerInteraction()
     {
         try {
@@ -43,14 +81,23 @@ class AdminLoginController
                             if ($creditObject !== null) {
                                 $username = $creditObject['username'];
                                 $password = $creditObject['password'];
-                                echo "Db response" . $this->signIn($username, $password);
-                                // echo "";
-                                // echo "username $username password $password";
-
+                                echo $this->setAuthState($password, $username);
+                                break;
                             }
                         default:
                             echo "Error";
                             break;
+                    }
+                }
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                if (isset($_GET['action'])) {
+                    switch ($_GET['action']) {
+                        case "getsession":
+                            echo $_SESSION['authState'];
+                            break;
+                        default:
+                            echo false;
                     }
                 }
             }
