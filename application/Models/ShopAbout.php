@@ -24,7 +24,8 @@ class ShopAbout
 
     public function getShopAbout(): array|null
     {
-        $shopInfo = array("shopAboutText" => $this->shopAboutText, "ownerTelNumber" => $this->shopOwnerTel, "openingHour" => $this->openingHour, "closingHour" => $this->closingHour);
+        //Array holding all the different shop about points
+        $shopInfo = array("about" => $this->shopAboutText, "ownerTelNumber" => $this->shopOwnerTel, "openingHour" => $this->openingHour, "closingHour" => $this->closingHour);
 
         if (count($shopInfo) < 0) {
             return null;

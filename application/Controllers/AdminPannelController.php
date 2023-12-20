@@ -46,6 +46,11 @@ class AdminPannelController
         return $this->dbClient->getAllFromTable("orders");
     }
 
+    public function getAllUndelivered()
+    {
+        return $this->dbClient->getAllFromTable("notDelivered");
+    }
+
 
     public function handlePannelInteractions()
     {

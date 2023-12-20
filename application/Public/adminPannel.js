@@ -54,11 +54,14 @@ function updateShopAbout() {
   }
 }
 
+//This method updates the shop owner telephone number.
 function updateShopOwnerTel() {
   const endPoint = "/adminPannelController";
 
+  //Gets the new value inserted by the user
   let newValue = document.getElementById("shopOwnerTel").value;
 
+  //Checks if the sumbmitted value is not an empty string
   if (sanitize(newValue) != null && sanitize(newValue).length > 10) {
     try {
       xlr = new XMLHttpRequest();
