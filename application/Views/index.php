@@ -19,6 +19,30 @@ function renderTableProducts($controller)
         echo "<div class='grid-item' id='product-component'><a href='/product/productid?id=$productId'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>$productName</h3><p>From $productPrice DKK</p><a href='/product/productid?id=$productId' class='cta cta-2 flex-center'>Buy</a></div></div>";
     }
 }
+function insertIntoTable(string $table, array $items)
+{
+
+    function getArrayKeys($items)
+    {
+        foreach (array_keys($items) as $keys) {
+            return "'" . implode("', '", array_keys($items)) . "'";
+        }
+
+    }
+
+    function getArrayValues(array $items)
+    {
+        foreach (array_values($items) as $value) {
+            return "'" . implode("', '", array_values($items)) . "'";
+        }
+    }
+
+    $query = "INSERT INTO $table (" . getArrayKeys($items) . ") VALUES ( " . getArrayValues($items) . ")";
+
+    echo $query;
+}
+
+$testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamster" => "pet"];
 
 ?>
 
@@ -71,7 +95,9 @@ function renderTableProducts($controller)
             </section>
         </article>
         <!-- PRODUCTS SECTION END -->
-
+        <p style="color:white">
+            <?php insertIntoTable("kon", $testArray); ?>
+        </p>
         <?php include_once("Components/email-form.php"); ?>
         <!-- ABOUT START -->
         <hr class="semi" />
@@ -131,7 +157,7 @@ function renderTableProducts($controller)
                     xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                     xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
 
-                    xlr.onreadystatechange = function () {
+                    xlr.onreadystatechange = func tion() {
                         if (xlr.readyState == 4) {
                             responeText = xlr.responseText;
 

@@ -144,6 +144,34 @@ class DatabaseClient
 
     }
 
+    public function insertIntoTable(string $table, array $items)
+    {
+
+        function getArrayKeys($items)
+        {
+            return "'" . implode("', '", array_keys($items)) . "'";
+        }
+
+        function getArrayValues(array $items)
+        {
+
+            return "'" . implode("', '", array_values($items)) . "'";
+
+        }
+
+        try {
+            $query = "INSERT INTO $table (" . getArrayKeys($items) . ") VALUES ( " . getArrayValues($items) . ")";
+
+            $result = pg_query($this->dbConnection, $query);
+
+            if (!$result) {
+                die("Query failed, insert into $table" . pg_last_error());
+            }
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Error inserting into tabl : " . $e->getMessage());
+        }
+    }
+
     //Authentication method for authenticating and admin using the database
     public function AuthenticationLogIn(string $password, string $username): bool
     {

@@ -18,24 +18,18 @@ get('/', './Views/index.php');
 
 get("/product/productid", "./Views/product.php");
 get("/checkout", "./Views/checkout.php");
-get("/login-admin", "./Views/admin-login.php");
 
-//Dynamically re-renders routes
-$adminRoute;
-if (isset($_SESSION['authState']) && $_SESSION['authState'] == true) {
-    $adminRoute = "./Views/admin-panel.php";
-} elseif ($_SESSION['authState'] == false) {
-    $adminRoute = './Views/404.php';
-}
+//Admin pannel routes
+get("/login-admin", "./Views/admin-login.php");
 //Dynamically re-renders routes
 $adminRoute = isset($_SESSION['authState']) && $_SESSION['authState'] == true ? "./Views/admin-panel.php" : './Views/404.php';
-
 get("/admin-panel", $adminRoute);
 post("/adminPannelController", "./Controllers/AdminPannelController.php");
 
-
+//Shopping cart routes
 post("/shoppingCart", "./Controllers/ShoppingCartController.php");
 get("/shoppingCart", "./Controllers/ShoppingCartController.php");
+
 post("/sendEmail", "./Controllers/EmailSenderController.php");
 
 post("/signinAdmin", "./Controllers/AdminLoginController.php");
