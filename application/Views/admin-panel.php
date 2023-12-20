@@ -1,3 +1,15 @@
+<?php
+namespace Views;
+
+use Controllers as C;
+
+include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
+
+$controller = new C\AdminPannelController();
+$shopAbout = $controller->getShopAbout();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,43 +49,40 @@
                     <h3>Overview of orders</h3>
                     <p>Here we will display an overview of all made orders.</p>
                     <br /><br />
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
-                    <p>London is the capital city of England.</p>
+                    <table class="table-orders" border="1" style="color:white; width:100%">
+                        <th>
+                            <tr>
+                                <td>
+                                    Id
+                                </td>
+                                <td>
+                                    Created at
+                                </td>
+                                <td>
+                                    Expected Delivery
+                                </td>
+                                <td>
+                                    Delivered
+                                </td>
+                            </tr>
+                        </th>
+                        <tbody>
+                            <?php
+                            foreach ($controller->getAllOrders() as $order) {
+                                $orderId = $order['id'];
+                                $orderCreatedAt = $order['created_at'];
+                                $orderExpectedDelivery = $order['expected_delivery'];
+                                $orderStatus = $order['done'];
+
+                                $orderStausOutput = $orderStatus === "f" ? "Not done" : "Done";
+
+                                $doneColor = $orderStatus === "f" ? "red" : "green";
+
+                                echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td style='background-color:$doneColor'>$orderStausOutput </td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div id="about" class="tabcontent">
@@ -82,8 +91,8 @@
                     <p>About shop. About owner. Contact info. Opening/closing hoursss.</p>
                     <p style="color:white">
                         <?php
-                echo $shopAbout['shopAboutText'];
-                ?>
+                        echo $shopAbout['shopAboutText'];
+                        ?>
                     </p>
                     <input type="text" id="shopInfoAboutText" placeholder="update About info" />
                     <button onclick="updateShopAbout()" type="button">Update</button>
@@ -96,12 +105,12 @@
                     <p>Full CRUD for photos, print types, sizes and frames.</p>
                     <div id="cart-items-output" class="cart-items">
                         <?php
-                foreach ($controller->getAllProducts() as $product) {
-                    $productName = $product['name'];
-                    $productPrice = $product['base_price'];
-                    $productUrl = $product['url'];
+                        foreach ($controller->getAllProducts() as $product) {
+                            $productName = $product['name'];
+                            $productPrice = $product['base_price'];
+                            $productUrl = $product['url'];
 
-                    echo "<div class='grid-container table cart-item'>
+                            echo "<div class='grid-container table cart-item'>
                             <div class='grid-container fifty-fifty'>
                             <div class='grid-item'>
                             <img src='$productUrl' />
@@ -115,8 +124,8 @@
                         <span><b>$productPrice</b> DKK</span>
                         <span class='right'><i class='fa-solid fa-trash' style='font-size:15pt'></i></span>
                         </div><hr/>";
-                }
-                ?>
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -139,7 +148,7 @@
         </article>
     </main>
     <!-- FOOTER START -->
-    <?php include 'footer.php'; ?>
+    <?php include 'Components/footer.php'; ?>
     <!-- FOOTER END -->
 </body>
 
