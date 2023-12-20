@@ -34,7 +34,6 @@
                 id="contactForm"
                 action="https://formsubmit.co/2007080c2cf8bd2ebb68506e7aa98c5f"
                 method="POST"
-                novalidate
                 enctype="multipart/form-data"
               >
                 <!-- Email invisibility -->
@@ -252,7 +251,7 @@
                         type="checkbox"
                       />
                       <label for="adresstype"
-                        >My billing and shipping address are the same</label
+                        >My billing and shipping address are different</label
                       >
                     </p>
                 <button class="cta" type="submit">Submit Order</button>

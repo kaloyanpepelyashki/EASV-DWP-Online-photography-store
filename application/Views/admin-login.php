@@ -34,14 +34,13 @@ $controller = new C\AdminLoginController;
                 <input placeholder="Username" id="username" type="text" name="user" maxlength="30" value="" />
                 <br /><br />
                 <input type="text" id="password" placeholder="Password" name="password" maxlength="30" />
-                <button onclick="submitForm()" id="submit-btn" type="button" name="submit">
+                <button onclick="submitForm()" id="submit-btn" type="button" name="submit" class="cta">
                     OK
                 </button>
             </form>
             <hr class="reveal" />
         </article>
         <br /><br /><br />
-        <a href="admin-panel"><button>Temporary link to access admin panel</button></a>
     </main>
     <!-- FOOTER START -->
     <?php include 'Components/footer.php'; ?>

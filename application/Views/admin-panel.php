@@ -21,112 +21,109 @@ $shopAbout = $controller->getShopAbout();
 </head>
 
 <body class="store">
+    
+<?php include 'Components/nav-bar.php'; ?>
     <main>
-        <?php include 'Components/nav-bar.php'; ?>
 
-        <article class="wrapper-standard">
-            <div class="pathname-container"></div>
-            <div class="panel-container">
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'orders')">
-                        Orders overview
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'about')">
-                        About section
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'products')">
-                        Products
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'daily')">
-                        Daily special offer
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'news')">
-                        News
-                    </button>
-                </div>
+        <br><br><br>
 
-                <div id="orders" class="tabcontent">
-                    <h3>Overview of orders</h3>
-                    <p>Here we will display an overview of all made orders.</p>
-                    <br /><br />
-                    <table class="table-orders" border="1" style="color:white; width:100%">
-                        <th>
-                            <tr>
-                                <td>
-                                    Id
-                                </td>
-                                <td>
-                                    Created at
-                                </td>
-                                <td>
-                                    Expected Delivery
-                                </td>
-                                <td>
-                                    Delivered
-                                </td>
-                            </tr>
-                        </th>
-                        <tbody>
-                            <?php
-                            foreach ($controller->getAllOrders() as $order) {
-                                $orderId = $order['id'];
-                                $orderCreatedAt = $order['created_at'];
-                                $orderExpectedDelivery = $order['expected_delivery'];
-                                $orderStatus = $order['done'];
+        <div class="panel-container">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'orders')">
+                    Orders overview
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'about')">
+                    About section
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'products')">
+                    Products
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'daily')">
+                    Daily special offer
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'news')">
+                    News
+                </button>
+            </div>
 
-                                $orderStausOutput = $orderStatus === "f" ? "Not done" : "Done";
-
-                                $doneColor = $orderStatus === "f" ? "red" : "green";
-
-                                echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td style='background-color:$doneColor'>$orderStausOutput </td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="about" class="tabcontent">
-                    <h3>About</h3>
-                    <p>READ AND UPDATE</p>
-                    <p>About shop. About owner. Contact info. Opening/closing hoursss.</p>
-                    <p style="color:white">
+            <div id="orders" class="tabcontent">
+                <h3>Overview of orders</h3>
+                <p>Here we will display an overview of all made orders.</p>
+                <table class="table-orders" border="1" style="color:white; width:100%">
+                    <th>
+                        <tr>
+                            <td>
+                                Id
+                            </td>
+                            <td>
+                                Created at
+                            </td>
+                            <td>
+                                Expected Delivery
+                            </td>
+                            <td>
+                                Delivered
+                            </td>
+                        </tr>
+                    </th>
+                    <tbody>
                         <?php
-                        echo $shopAbout['shopAboutText'];
-                        ?>
-                    </p>
-                    <input type="text" id="shopInfoAboutText" placeholder="update About info" />
-                    <button onclick="updateShopAbout()" type="button">Update</button>
-                    <input type="text" id="shopOwnerTel" placeholder="update owner telephone" />
-                    <button onclick="updateShopOwnerTel()" type="button">Update</button>
-                </div>
-                <hr />
-                <div id="products" class="tabcontent">
-                    <h3>Products</h3>
-                    <p>Full CRUD for photos, print types, sizes and frames.</p>
-                    <div id="cart-items-output" class="cart-items">
-                        <?php
-                        foreach ($controller->getAllProducts() as $product) {
-                            $productName = $product['name'];
-                            $productPrice = $product['base_price'];
-                            $productUrl = $product['url'];
+                        foreach ($controller->getAllOrders() as $order) {
+                            $orderId = $order['id'];
+                            $orderCreatedAt = $order['created_at'];
+                            $orderExpectedDelivery = $order['expected_delivery'];
+                            $orderStatus = $order['done'];
 
-                            echo "<div class='grid-container table cart-item'>
-                            <div class='grid-container fifty-fifty'>
-                            <div class='grid-item'>
-                            <img src='$productUrl' />
-                            </div>
-                            <span class='grid-item left'>
-                            <b>$productName</b><br />
-                            40x60cm<br />Glossy photo paper<br />
-                            No frame</span>
-                        </div>
-                        <span><u></u></span>
-                        <span><b>$productPrice</b> DKK</span>
-                        <span class='right'><i class='fa-solid fa-trash' style='font-size:15pt'></i></span>
-                        </div><hr/>";
+                            $orderStausOutput = $orderStatus === "f" ? "Not done" : "Done";
+
+                            $doneColor = $orderStatus === "f" ? "red" : "green";
+
+                            echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td style='background-color:$doneColor'>$orderStausOutput </td></tr>";
                         }
                         ?>
-                    </div>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="about" class="tabcontent">
+                <h3>About</h3>
+                <p>READ AND UPDATE</p>
+                <p>About shop. About owner. Contact info. Opening/closing hoursss.</p>
+                <p style="color:white">
+                    <?php echo $shopAbout['shopAboutText']; ?>
+                </p>
+                <input type="text" id="shopInfoAboutText" placeholder="update About info" />
+                <button onclick="updateShopAbout()" type="button">Update</button>
+                <input type="text" id="shopOwnerTel" placeholder="update owner telephone" />
+                <button onclick="updateShopOwnerTel()" type="button">Update</button>
+            </div>
+
+            <div id="products" class="tabcontent">
+                <h3>Products</h3>
+                <p>Full CRUD for photos, print types, sizes and frames.</p>
+                <div id="cart-items-output" class="cart-items">
+                    <?php foreach ($controller->getAllProducts() as $product) {
+                        $productName = $product['name'];
+                        $productPrice = $product['base_price'];
+                        $productUrl = $product['url'];
+
+                        echo "<div class='grid-container table cart-item' style='color:white;'>
+                                <div class='grid-container fifty-fifty'>
+                                    <div class='grid-item'>
+                                        <img src='$productUrl' />
+                                    </div>
+                                    <span class='grid-item left'>
+                                <b>$productName</b><br />
+                                40x60cm<br />Glossy photo paper<br />
+                                No frame</span>
+                                </div>
+                                <span><u></u></span>
+                                <span><b>$productPrice</b> DKK</span>
+                                <span class='right'><i class='fa-solid fa-trash' style='font-size:15pt'></i></span>
+                                </div><hr/>";
+                            }
+                        ?>
+                    /div>
                 </div>
 
                 <div id="daily" class="tabcontent">
@@ -145,7 +142,6 @@ $shopAbout = $controller->getShopAbout();
                     </p>
                 </div>
             </div>
-        </article>
     </main>
     <!-- FOOTER START -->
     <?php include 'Components/footer.php'; ?>

@@ -14,10 +14,7 @@
     >
     <span>Adam Sochorec</span>
   </div>
-  <script
-    src="https://kit.fontawesome.com/0d09e23a84.js"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/0d09e23a84.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="/Views/assets/script.js"></script>
 </footer>

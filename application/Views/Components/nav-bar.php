@@ -2,9 +2,7 @@
   <div class="blur">
     <div class="container">
       <nav id="navigation">
-        <a href="/" class="logo"
-          ><span>adam</span><br /><span>sochorec</span></a
-        >
+        <a href="/" class="logo"><span>adam</span><br/><span>sochorec</span></a>
         <a aria-label="mobile menu" class="hamburger">
           <span></span>
           <span></span>
@@ -18,6 +16,9 @@
           <li class="store-nav"><a href="/store/store">store</a></li>
           <li class="shopping-cart">
             <a><i class="fa-solid fa-bag-shopping fa-xl"></i></a>
+          </li>
+          <li class="sign-in">
+            <a href="/login-admin"><i class="fa-solid fa-sign-in fa-xl"></i></a>
           </li>
         </ul>
       </nav>

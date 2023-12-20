@@ -125,7 +125,6 @@ $testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamste
                 <a href="https://www.flickr.com/photos/141401020@N03/" target="_blank" rel="noopener noreferrer">LEGO
                     architect</a>, current purveyor of digital aesthetics and sarcasm.
             </p>
-            <p class="reveal">PS: No cookies — just creativity!</p>
             <hr class="reveal" />
         </article>
         <!-- CONTACT FORM END -->
