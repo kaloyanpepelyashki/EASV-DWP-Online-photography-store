@@ -38,13 +38,13 @@ $product = $controller->getProduct(); ?>
         <article class="wrapper-wide">
             <h1>
                 #
-                <?php echo $product->name; ?>
+                <?php echo $product->getPhoto()->name; ?>
             </h1>
             <div class="pathname-container">
                 <p>
                     <span class="pathname"><a href="/"></a> &#8250; </span>
                     <span class="pathname"><a href="/store/store">store</a> &#8250; #
-                        <?php echo $product->name; ?>
+                        <?php echo $product->getPhoto()->name; ?>
                     </span>
                 </p>
             </div>
@@ -56,7 +56,7 @@ $product = $controller->getProduct(); ?>
                         <div class="swiper-wrapper">
                             <!-- Slides -->
                             <div class="swiper-slide">
-                                <img src="<?php echo $product->url ?>" />
+                                <img src="<?php echo $product->getPhoto()->url ?>" />
                             </div>
                             <div class="swiper-slide">
                                 <img src="./prints/21071948976502.jpg" />
@@ -75,13 +75,13 @@ $product = $controller->getProduct(); ?>
                 </div>
                 <div class="grid-item">
                     <h2>
-                        <?php echo $product->basePrice; ?> DKK
+                        <?php echo $product->getPhoto()->basePrice; ?> DKK
                     </h2>
                     <p style="font-size: 10pt">incl. VAT / excl. shipping</p>
                     <p style="font-size: 18pt">
                         Aspect Ratio:
                         <b>
-                            <?php echo $product->aspectRatio; ?>
+                            <?php echo $product->getPhoto()->aspectRatio; ?>
                         </b>
                     </p>
                     <select id="size" name="size" required>

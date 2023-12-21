@@ -1,5 +1,4 @@
 function addToCart(item) {
-  console.log("item: " + item);
   try {
     xlr = new XMLHttpRequest();
     xlr.open("POST", "/shoppingCart", true);
@@ -36,15 +35,15 @@ function outPutResults(itemsArray) {
       let htmlContent = `<div class="grid-container table cart-item">
       <div class="grid-container fifty-fifty">
       <div class="grid-item">
-        <img src="${item.url}" />
+        <img src="${item.photo.url}" />
       </div>
       <span class="grid-item left">
-        <b>${item.name}</b><br />
+        <b>${item.photo.name}</b><br />
         40x60cm<br />Glossy photo paper<br />
         No frame</span>
     </div>
-    <span><u></u></span>
-    <span><b>${item.basePrice}</b> DKK</span>
+    <span><u>${item.quantity}</u></span>
+    <span><b>${item.photo.basePrice}</b> DKK</span>
     <span class="right"><i class="fa-solid fa-trash" style="font-size:15pt"></i></span>
   </div><hr/>`;
       // output.innerHTML(htmlContent);
@@ -70,7 +69,7 @@ function parseContent(xlrResponse) {
     //Escaping the regex found in the responseText string
     let escapedString = responseText.replace(regex2, "$2").replace("$2", " ");
 
-    if (escapedString && escapedString.length >= 1) {
+    if (escapedString.length >= 1) {
       //Parsing the escaped string to JSON
       let parsed = JSON.parse(escapedString);
       console.log("Parsed : " + parsed);
@@ -82,7 +81,6 @@ function parseContent(xlrResponse) {
     } else {
       console.error("Failed to extract array from response");
       console.log(escapedString);
-      console.log("Escaped String length" + escapedString.length);
     }
   } catch (e) {
     console.error("Error parsing JSON: " + e.message);
@@ -101,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       xlr.onreadystatechange = () => {
         if (xlr.status === 200) {
-          console.log("Just checking " + xlr.responseText);
           if (xlr.responseText !== "Nothing to show") {
             parseContent(xlr.responseText);
           } else {

@@ -59,9 +59,23 @@ class ShoppingCart
     // Adds item to the cart in the global $_SESSION['cart']
     public function addToCart($item)
     {
+        $exists = false;
 
-        $_SESSION['cart'][] = $item;
-        return true;
+        //Checks if any of the products in the cart has the same id as the product being added
+        foreach ($_SESSION['cart'] as &$cartItem) {
+            //If yes
+            if (isset($cartItem->photo->id) && $cartItem->photo->id == $item->photo->id) {
+                //It increments the quantity with 1
+                $cartItem->quantity++;
+                $exists = true;
+                break;
+            }
+        }
+        //If no matches are found it adds to product to the shopping cart
+        if (!$exists) {
+            $_SESSION['cart'][] = $item;
+            return true;
+        }
     }
 
     // Removes item to the cart in the global $_SESSION['cart']

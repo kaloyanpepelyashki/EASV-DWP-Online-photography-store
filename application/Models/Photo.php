@@ -3,6 +3,7 @@ namespace Models;
 
 class Photo
 {
+    public readonly int $id;
     public readonly string $description;
     public readonly string $name;
     public readonly string $url;
@@ -12,8 +13,9 @@ class Photo
 
     public readonly string $aspectRatio;
 
-    public function __construct(string $name, string $description, string $url, string $publishedAt, float $basePrice, string $aspectRatio)
+    public function __construct(int $id, string $name, string $description, string $url, string $publishedAt, float $basePrice, string $aspectRatio)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->url = $url;
         $this->publishedAt = $publishedAt;
