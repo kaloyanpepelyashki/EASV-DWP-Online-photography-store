@@ -108,8 +108,12 @@ function renderTableProducts($controller)
                 Contact email:
 
                 Opening/closing hours:
-                <?php echo $shopAbout['openingHour']; ?> -
-                <?php echo $shopAbout['closingHour']; ?> <br><br>
+                <b>
+                    <?php echo $shopAbout['openingHour']; ?>
+                </b> -
+                <b>
+                    <?php echo $shopAbout['closingHour']; ?>
+                </b><br><br>
             </p>
             <hr class="reveal" />
         </article>
@@ -117,46 +121,46 @@ function renderTableProducts($controller)
     </main>
     <script src="../Public/cartInteractions.js"></script>
     <script>
-    function sendEmail() {
-        let email = document.getElementById("email").value;
-        let name = document.getElementById("name").value;
-        let subject = document.getElementById("subject").value;
-        let message = document.getElementById("message").value;
-        let company = document.getElementById("company").value;
+        function sendEmail() {
+            let email = document.getElementById("email").value;
+            let name = document.getElementById("name").value;
+            let subject = document.getElementById("subject").value;
+            let message = document.getElementById("message").value;
+            let company = document.getElementById("company").value;
 
-        if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
-            window.alert("Please fill out all fields");
+            if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
+                window.alert("Please fill out all fields");
 
-        } else {
-            let emailObject = {
-                email: email,
-                name: name,
-                subject: subject,
-                message: message,
-                company: company.length > 0 ?? company | "none",
-            }
+            } else {
+                let emailObject = {
+                    email: email,
+                    name: name,
+                    subject: subject,
+                    message: message,
+                    company: company.length > 0 ?? company | "none",
+                }
 
-            try {
-                const xlr = new XMLHttpRequest();
-                xlr.open("POST", "/sendEmail?action=send", true);
-                xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
+                try {
+                    const xlr = new XMLHttpRequest();
+                    xlr.open("POST", "/sendEmail?action=send", true);
+                    xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
 
-                xlr.onreadystatechange = function() {
-                    if (xlr.readyState == 4) {
-                        responeText = xlr.responseText;
+                    xlr.onreadystatechange = function () {
+                        if (xlr.readyState == 4) {
+                            responeText = xlr.responseText;
 
-                        console.log(responeText);
-                        if (xlr.status == 200) {
-                            console.log("email sent successfully");
+                            console.log(responeText);
+                            if (xlr.status == 200) {
+                                console.log("email sent successfully");
+                            }
                         }
                     }
+                } catch (e) {
+                    console.error("Error sending email :" + e.message);
                 }
-            } catch (e) {
-                console.error("Error sending email :" + e.message);
             }
         }
-    }
     </script>
 </body>
 <?php include_once("Components/footer.php"); ?>

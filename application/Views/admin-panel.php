@@ -180,6 +180,7 @@ $shopAbout = $controller->getShopAbout();
                 <p>CRUD for news. News are displayed on the homepage. They have a date and text contect.</p>
             </div>
     </main>
+    <!-- Not delivered orders table -->
     <table class="table-orders" border="1" style="color:white; width:100%">
         <th>
             <tr>
