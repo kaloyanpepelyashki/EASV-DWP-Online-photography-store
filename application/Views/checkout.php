@@ -1,280 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <?php include 'Components/head.php'; ?>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <title>Product details | Adam Sochorec</title>
-  </head>
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <?php
+    include 'Components/head.php';
+    ?>
+        <title>Checkout</title>
+      </head>
+      <body id="store-checkout" class="store">
+      <?php include 'Components/nav-bar.php'; ?>
+      <?php include 'Components/shopping-cart.php'; ?>
 
-  <body id="store-checkout" class="store">
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />
-    <?php include 'Components/nav-bar.php'; ?>
-    <?php include 'Components/shopping-cart.php'; ?>
-    <main>
-      <article class="wrapper-wide">
-        <div class="pathname-container"></div>
-        <h1>Checkout</h1>
+        <main>
+          <article class="wrapper-wide">
+            <div class="pathname-container"></div>
 
-        <div class="pathname-container">
-          <p>
-            <span class="pathname"><a href="/"></a> &#8250; </span>
-            <span class="pathname"
-              ><a href="/store/store">store</a> &#8250; checkout</span
-            >
-          </p>
-        </div>
-        <hr class="reveal" />
-        <div class="grid-container seventy-thirty">
-          <div class="grid-item">
+            <h1>Checkout</h1>
+
+            <div class="pathname-container">
+              <p>
+                <span class="pathname"><a href="/"></a> &#8250; </span>
+                <span class="pathname"
+                  ><a href="/store/store">store</a> &#8250; checkout</span
+                >
+              </p>
+            </div>
+            <hr class="reveal" />
+
             <section class="contact-form-section">
-              <h2 class="reveal">Billing Adress</h2>
-              <form
-                id="contactForm"
-                action="https://formsubmit.co/2007080c2cf8bd2ebb68506e7aa98c5f"
-                method="POST"
-                enctype="multipart/form-data"
-              >
-                <!-- Email invisibility -->
+              <form>
                 <div class="grid-container contact-form fifty-fifty reveal">
                   <div class="grid-item">
-                    <p><label for="email">First Name *</label></p>
-                    <input
-                      type="text"
-                      id="billing-fname"
-                      name="First Name"
-                      placeholder=""
-                      required
-                      autocomplete="First Name"
-                    />
-
-                    <br />
-                    <p><label for="email">Email * </label></p>
-                    <input
-                      type="email"
-                      id="billing-email"
-                      name="Email"
-                      placeholder=""
-                      required
-                      autocomplete="email"
-                    />
-                    <br />
-                  </div>
-                  <div class="grid-item">
-                    <p><label for="email">Last Name *</label></p>
-                    <input
-                      type="text"
-                      id="billing-lname"
-                      name="Last Name"
-                      placeholder=""
-                      required
-                      autocomplete="Last Name"
-                    />
-                    <br />
-                    <p><label for="email">Phone Number *</label></p>
-                    <input
-                      type="text"
-                      id="billing-phone"
-                      name="Phone Number"
-                      placeholder=""
-                      required
-                      autocomplete="Phone Number"
-                    />
-                    <br />
-                  </div>
-                </div>
-                <div class="reveal">
-                  <p><label for="message">Address * </label></p>
-                  <textarea
-                    minlength="10"
-                    name="address"
-                    rows="1"
-                    id="billing-address"
-                    required
-                    autocomplete="address-level1"
-                    placeholder=""
-                  ></textarea>
-                </div>
-                <div class="grid-container contact-form fifty-fifty reveal">
-                  <div class="grid-item">
-                    <p><label for="country">Country </label></p>
-
-                    <select id="billing-country" name="Country" required>
-                      <option>Denmark</option></select
-                    ><br />
-                    <p><label for="email">City *</label></p>
-                    <input
-                      type="text"
-                      id="billing-city"
-                      name="City"
-                      placeholder=""
-                      required
-                      autocomplete="City"
-                    />
-                    <br />
-                  </div>
-                  <div class="grid-item">
-                    <p><label for="email">City *</label></p>
-                    <input
-                      type="text"
-                      id="city"
-                      name="City"
-                      placeholder=""
-                      required
-                      autocomplete="City"
-                    />
-                    <br />
-                    <p><label for="email">ZIP Code *</label></p>
-                    <input
-                      type="text"
-                      id="zip"
-                      name="zip"
-                      placeholder=""
-                      required
-                      autocomplete="Zip Code"
-                    />
-                    <br />
-                    <p></p>
-                  </div>
-                </div>
-                <!-- IF ADDRESS IS DIFFERENT-->
-                <div id="hiddenElement" style="display: none">
-                  <br />
-                  <h2 class="reveal">Shipping Adress</h2>
-
-                  <div class="grid-container contact-form fifty-fifty reveal">
-                    <div class="grid-item">
-                      <p><label for="email">First Name *</label></p>
+                    <h2>Customer details</h2>
+                    <div class="form-group">
+                      <label for="customerName">First Name: *</label>
                       <input
                         type="text"
-                        id="delivery-fname"
-                        name="First Name"
-                        placeholder=""
+                        class="form-control"
+                        id="firstName"
                         required
-                        autocomplete="First Name"
+                        autocomplete="given-name"
+                        placeholder="Enter First Name *"
                       />
+                    </div>
+                    <div class="form-group">
+                      <label for="customerName">Last Name:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="secondName"
+                        required
+                        autocomplete="family-name"
+                        placeholder="Enter Last Name *"
+                      />
+                    </div>
 
-                      <br />
-                      <p><label for="email">Email * </label></p>
+                    <div class="form-group">
+                      <label for="customerEmail">Email:</label>
                       <input
                         type="email"
-                        id="delivery-email"
-                        name="delivery-Email"
-                        placeholder=""
+                        class="form-control"
+                        id="customerEmail"
+                        placeholder="Enter Email"
                         required
                         autocomplete="email"
                       />
-                      <br />
                     </div>
-                    <div class="grid-item">
-                      <p><label for="email">Last Name *</label></p>
+                    <div class="form-group">
+                      <label for="customerAddress">Address Line 1:</label>
                       <input
                         type="text"
-                        id="delivery-lname"
-                        name="Last Name"
-                        placeholder=""
+                        class="form-control"
+                        id="customerAddress"
+                        placeholder="Enter Address Line 1 *"
                         required
-                        autocomplete="Last Name"
+                        autocomplete="address-level1"
                       />
-                      <br />
-                      <p><label for="email">Phone Number *</label></p>
+                    </div>
+                    <div class="form-group">
+                      <label for="customerAddress">Address Line 2:</label>
                       <input
                         type="text"
-                        id="delivery-phone"
-                        name="Phone Number"
-                        placeholder=""
+                        class="form-control"
+                        id="customerAddress2"
+                        placeholder="Enter Address Line 2 "
                         required
-                        autocomplete="Phone Number"
+                        autocomplete="address-line1"
                       />
-                      <br />
+                    </div>
+                    <div class="form-group">
+                      <label for="customerAddress">ZIP Code: *</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="customerAddress3"
+                        placeholder="Enter ZIP Code *"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="customerAddress">City: *</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="customerAddress4"
+                        placeholder="Enter City *"
+                        required
+                        autocomplete="city"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="customerAddress">Country: *</label>
+                      <select id="customerAddress5">
+                        <option value="Denmark">Denmark</option>
+                        <option value="Finland">Finland</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Sweden">Sweden</option>
+                      </select>
                     </div>
                   </div>
-                  <div class="reveal">
-                    <p><label for="message">Address * </label></p>
-                    <textarea
-                      minlength="10"
-                      name="address"
-                      rows="1"
-                      id="delivery-address"
-                      required
-                      autocomplete="address-level1"
-                      placeholder=""
-                    ></textarea>
-                  </div>
-                  <div class="grid-container contact-form fifty-fifty reveal">
-                    <div class="grid-item">
-                      <p><label for="country">Country </label></p>
-
-                      <select id="delivery-country" name="Country" required>
-                        <option>Denmark</option></select
-                      ><br />
-                      <p><label for="email">City *</label></p>
+                  <div class="grid-item">
+                    <h2>Goods overview</h2>
+                    <div class="form-group">
+                      <label for="productName">Product Name:</label>
                       <input
                         type="text"
-                        id="delivery-city"
-                        name="City"
-                        placeholder=""
-                        required
-                        autocomplete="City"
+                        class="form-control"
+                        id="productName"
+                        placeholder="Enter Product Name"
                       />
                     </div>
-                    <div class="grid-item">
-                      <p><label for="email">City *</label></p>
+                    <div class="form-group">
+                      <label for="productQty">Product Quantity:</label>
                       <input
-                        type="text"
-                        id="delivery-city"
-                        name="City"
-                        placeholder=""
-                        required
-                        autocomplete="City"
+                        type="number"
+                        class="form-control"
+                        id="productQty"
+                        placeholder="Enter product quantity"
                       />
-                      <br />
-                      <p><label for="email">ZIP Code *</label></p>
+                    </div>
+                    <div class="form-group">
+                      <label for="productPrice">Product Price:</label>
                       <input
-                        type="text"
-                        id="delivery-zip"
-                        name="zip"
-                        placeholder=""
-                        required
-                        autocomplete="Zip Code"
+                        type="number"
+                        class="form-control"
+                        id="productPrice"
+                        placeholder="Enter product price"
                       />
-                      <br />
-                      <p></p>
+                    </div>
+                    <div class="form-group">
+                      <label for="gstRate">GST Rate (%):</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="gstRate"
+                        placeholder="Enter GST rate"
+                      />
                     </div>
                   </div>
                 </div>
-                <p>
-                      <input
-                        id="adresstype"
-                        name="adresstype"
-                        type="checkbox"
-                      />
-                      <label for="adresstype"
-                        >My billing and shipping address are different</label
-                      >
-                    </p>
-                <button class="cta" type="submit">Submit Order</button>
+                <button type="submit" class="cta">Generate Invoice</button>
               </form>
-              <input
-                type="hidden"
-                name="_captcha"
-                value="true"
-              /><!-- Spam captcha deactivation -->
-              <input
-                type="hidden"
-                name="_next"
-                value="https://adamsochorec.com/success"
-              />
-              <!-- Redirect to the success page -->
             </section>
-          </div>
-          <div class="grid-item"></div>
-        </div>
-
-        <hr class="reveal" />
-      </article>
-    </main>
-    <?php include 'Components/footer.php'; ?>
+          </article>
+        </main>
+      </body>
+    </html>
+    <?php include_once("Components/footer.php"); ?>
+    <script src="/Views/assets/checkout.js"></script>
   </body>
 </html>
