@@ -1,7 +1,7 @@
 <?php
 //ADDITIONAL LOGIC OF THE VIEW GOES HERE
-include_once(__DIR__ . '/../Controllers/ProductOverviewController.php');
-include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
+require_once(__DIR__ . '/../Controllers/ProductOverviewController.php');
+require_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
 
 use Controllers as C;
 

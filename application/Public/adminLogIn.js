@@ -1,13 +1,29 @@
+function sanitize(string) {
+  const map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
+  };
+  const reg = /[&<>"'/]/gi;
+  return string.replace(reg, (match) => map[match]);
+}
+
 function submitForm() {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   const endPoint = "/signinAdmin";
 
+  let sanitizedUsername = sanitize(username);
+
   let creditObject = {
-    username: username,
+    username: sanitizedUsername,
     password: password,
   };
 
+  console.log(sanitizedUsername);
   try {
     console.log("Credit Object : " + creditObject);
     const xlr = new XMLHttpRequest();

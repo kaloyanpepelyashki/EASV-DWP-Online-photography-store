@@ -3,9 +3,9 @@
 namespace Views;
 
 //ADDITIONAL LOGIC OF THE VIEW GOES HERE
-include_once(__DIR__ . '/../Controllers/HomeController.php');
-include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
-include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
+require_once(__DIR__ . '/../Controllers/HomeController.php');
+require_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
+require_once(__DIR__ . '/../Controllers/AdminPannelController.php');
 
 use Controllers as C;
 

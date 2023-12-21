@@ -3,11 +3,11 @@ namespace Controllers;
 
 use Models as M;
 
-include_once(__DIR__ . '/../Models/DatabaseClient.php');
-include_once(__DIR__ . '/../Models/ProductsModel.php');
-include_once(__DIR__ . '/../Models/ShopAbout.php');
-include_once(__DIR__ . '/../Models/ShoppingCart.php');
-include_once(__DIR__ . '/../Models/NewsMessage.php');
+require_once(__DIR__ . '/../Models/DatabaseClient.php');
+require_once(__DIR__ . '/../Models/ProductsModel.php');
+require_once(__DIR__ . '/../Models/ShopAbout.php');
+require_once(__DIR__ . '/../Models/ShoppingCart.php');
+require_once(__DIR__ . '/../Models/NewsMessage.php');
 
 //This controller handles all basic operations related to the initial view of the application "/"
 class HomeController

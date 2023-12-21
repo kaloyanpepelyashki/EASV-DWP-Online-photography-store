@@ -3,7 +3,7 @@ namespace Controllers;
 
 use Models as M;
 
-include_once(__DIR__ . '/../Models/DatabaseClient.php');
+require_once(__DIR__ . '/../Models/DatabaseClient.php');
 
 
 class AdminLoginController

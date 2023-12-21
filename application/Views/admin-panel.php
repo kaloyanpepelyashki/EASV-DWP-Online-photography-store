@@ -3,7 +3,7 @@ namespace Views;
 
 use Controllers as C;
 
-include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
+require_once(__DIR__ . '/../Controllers/AdminPannelController.php');
 
 $controller = new C\AdminPannelController();
 $shopAbout = $controller->getShopAbout();

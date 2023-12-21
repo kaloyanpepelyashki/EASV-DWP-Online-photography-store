@@ -4,8 +4,8 @@ namespace Controllers;
 
 use Models as M;
 
-include_once(__DIR__ . '/../Models/DatabaseClient.php');
-include_once(__DIR__ . '/../Models/ShopAbout.php');
+require_once(__DIR__ . '/../Models/DatabaseClient.php');
+require_once(__DIR__ . '/../Models/ShopAbout.php');
 
 //This controller handles all basic operations related to the admin panel of the application
 class AdminPannelController
