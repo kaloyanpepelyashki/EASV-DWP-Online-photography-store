@@ -114,7 +114,7 @@ $shopAbout = $controller->getShopAbout();
                         $shopAboutText = $shopAbout['about'];
                         $shopOwnerTel = $shopAbout['ownerTelNumber'];
                         $shopWorkingTime = $shopAbout['openingHour'] . " - " . $shopAbout['closingHour'];
-                        echo "<tr><td>${shopAbout['about']}</td><td>sdadas</td><td>$shopOwnerTel</td><td>$shopWorkingTime</td></tr>";
+                        echo "<tr><td>$shopAboutText</td><td>sdadas</td><td>$shopOwnerTel</td><td>$shopWorkingTime</td></tr>";
                         ?>
                     </tbody>
                 </table>
@@ -171,7 +171,8 @@ $shopAbout = $controller->getShopAbout();
 
             <div id="daily" class="tabcontent">
                 <h3>Daily</h3>
-                <p>Full CRUD for daily special offer. Select product in question. State discount percentage. Daily offer message maybe?</p>
+                <p>Full CRUD for daily special offer. Select product in question. State discount percentage. Daily offer
+                    message maybe?</p>
             </div>
 
             <div id="news" class="tabcontent">

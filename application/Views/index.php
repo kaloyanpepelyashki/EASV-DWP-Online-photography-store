@@ -53,7 +53,8 @@ function renderTableProducts($controller)
                 </div>
                 <p>
                     <?php echo $newsMessage['newsMessageText']; ?><br>
-                    News date: <?php echo $newsMessage['newsMessageDate']; ?>
+                    News date:
+                    <?php echo $newsMessage['newsMessageDate']; ?>
                 </p>
             </div>
         </article>
@@ -99,12 +100,15 @@ function renderTableProducts($controller)
             <h1 class="reveal">ABOUT</h1>
 
             <p class="reveal">
-                <?php echo $shopAbout['shopAboutText']; ?> <br>
+                <?php echo $shopAbout['about']; ?> <br>
             </p>
             <p class="reveal">
-                Telephone number: <?php echo $shopAbout['ownerTelNumber']; ?> <br>
-                Contact email: <?php echo $shopAbout['ownerMail']; ?> <br>
-                Opening/closing hours: <?php echo $shopAbout['openingHour']; ?> -
+                Telephone number:
+                <?php echo $shopAbout['ownerTelNumber']; ?> <br>
+                Contact email:
+
+                Opening/closing hours:
+                <?php echo $shopAbout['openingHour']; ?> -
                 <?php echo $shopAbout['closingHour']; ?> <br><br>
             </p>
             <hr class="reveal" />
