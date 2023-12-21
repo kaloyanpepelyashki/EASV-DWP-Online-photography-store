@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/router.php';
+require_once __DIR__ . '/config.php';
 $sessionStatus = session_status();
 
 // Check if a session is active

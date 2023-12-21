@@ -1,11 +1,12 @@
 <?php
+
+namespace Views;
+
 //ADDITIONAL LOGIC OF THE VIEW GOES HERE
 include_once(__DIR__ . '/../Controllers/HomeController.php');
 include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
 include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 use Controllers as C;
 
 $controller = new C\HomeController();
@@ -13,10 +14,11 @@ $controller = new C\HomeController();
 $latestProduct = $controller->getLatestProduct();
 $shopAbout = $controller->getShopInfo();
 $newsMessage = $controller->getNewsMessage();
+$products = $controller->getAllProducts();
 
-function renderTableProducts($controller)
+function renderTableProducts($controller, $products)
 {
-    foreach ($controller->getAllProducts() as $product) {
+    foreach ($products as $product) {
         $productId = $product["id"];
         $productName = $product["name"];
         $productUrl = $product["url"];
@@ -86,7 +88,7 @@ function renderTableProducts($controller)
                 <!-- GRID ELEMENT -->
                 <?php
                 //The function that outputs the product template for each item from the database
-                renderTableProducts($controller);
+                renderTableProducts($controller, $products);
                 ?>
             </section>
         </article>

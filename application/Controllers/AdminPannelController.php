@@ -49,6 +49,7 @@ class AdminPannelController
 
     public function getAllUndelivered()
     {
+        //Gets the database view for not delivered orders (pending orders)
         return $this->dbClient->getAllFromTable("notDelivered");
     }
 

@@ -30,34 +30,15 @@ class HomeController
         $this->newsMessage = new M\NewsMessage();
     }
 
-    public function getDatabaseClient()
-    {
-        return $this->dBClient;
-    }
 
     public function getAllProducts(): array
     {
         return $this->productsModel->getAllProducts();
     }
 
-    public function getProduct_byId(int $id)
-    {
-        return $this->productsModel->getProduct_ById($id);
-    }
-
-    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
-    {
-        return $this->dBClient->updateTableById($table, $idToUpdate, $columnToUpdate, $newValue);
-    }
-
     public function getShopInfo()
     {
         return $this->shopInfoModel->getShopAbout();
-    }
-
-    public function getShoppingCartItems()
-    {
-        return $this->shoppingCart->getCartItems();
     }
 
     public function getLatestProduct()

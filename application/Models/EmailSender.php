@@ -14,7 +14,7 @@ class EmailSender
     public function sendEmail(string $email, string $name, string $subject, string $message, )
     {
         try {
-            mail($email, $subject, $message, "From: kaloyan@ebits.dk");
+            mail("adamSochorec@gmail.com", $subject, $message, "From: $email");
             echo "Thank you for your email";
         } catch (\Exception $e) {
             echo "Error: " . $e->getMessage();

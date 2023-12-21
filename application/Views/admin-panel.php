@@ -1,8 +1,6 @@
 <?php
 namespace Views;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 use Controllers as C;
 
 include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
@@ -23,50 +21,50 @@ $shopAbout = $controller->getShopAbout();
 </head>
 <style>
     .toggle {
-    margin:0 0 -0.6rem 1rem;
-    position: relative;
-    display: inline-block;
-    width: 4rem;
-    height: 2rem;
+        margin: 0 0 -0.6rem 1rem;
+        position: relative;
+        display: inline-block;
+        width: 4rem;
+        height: 2rem;
     }
 
     .toggle input {
-    display: none;
+        display: none;
     }
 
     .roundbutton {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    background-color: #33455e;
-    display: block;
-    transition: all 0.3s;
-    border-radius: 3.4rem;
-    cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        background-color: #33455e;
+        display: block;
+        transition: all 0.3s;
+        border-radius: 3.4rem;
+        cursor: pointer;
     }
 
     .roundbutton:before {
-    position: absolute;
-    content: "";
-    height: 1.4rem;
-    width: 1.5rem;
-    border-radius: 100%;
-    display: block;
-    left: 0.35rem;
-    bottom: 0.3rem;
-    background-color: white;
-    transition: all 0.3s;
+        position: absolute;
+        content: "";
+        height: 1.4rem;
+        width: 1.5rem;
+        border-radius: 100%;
+        display: block;
+        left: 0.35rem;
+        bottom: 0.3rem;
+        background-color: white;
+        transition: all 0.3s;
     }
 
-    input:checked + .roundbutton {
-    background-color: #FF6E48;
+    input:checked+.roundbutton {
+        background-color: #FF6E48;
     }
 
-    input:checked + .roundbutton:before  {
-    transform: translate(1.8rem, 0);
+    input:checked+.roundbutton:before {
+        transform: translate(1.8rem, 0);
     }
 </style>
 
@@ -248,14 +246,14 @@ $shopAbout = $controller->getShopAbout();
             </div>
     </main>
 
-    
+
 
     <!-- FOOTER START -->
     <?php include 'Components/footer.php'; ?>
     <!-- FOOTER END -->
     <script src="../Public/adminPannel.js"></script>
     <script src="../Public/orderOverview.js"></script>
-        
+
 </body>
 
 </html>
