@@ -5,7 +5,7 @@ namespace Controllers;
 use Models as M;
 
 include(__DIR__ . '/../Models/EmailSender.php');
-
+//This controller is in charge of handling the async requests coming from the client side for sending emails.
 class EmailSenderController
 {
     private $emailSenderModel;

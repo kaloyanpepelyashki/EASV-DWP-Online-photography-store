@@ -10,13 +10,16 @@ class Photo
     public readonly string $publishedAt;
     public readonly string $basePrice;
 
-    public function __construct(string $name, string $description, string $url, string $publishedAt, float $basePrice)
+    public readonly string $aspectRatio;
+
+    public function __construct(string $name, string $description, string $url, string $publishedAt, float $basePrice, string $aspectRatio)
     {
         $this->name = $name;
         $this->url = $url;
         $this->publishedAt = $publishedAt;
         $this->basePrice = $basePrice;
         $this->description = $description;
+        $this->aspectRatio = $aspectRatio;
     }
 
 

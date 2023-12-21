@@ -1,6 +1,7 @@
 <?php
 namespace Models;
 
+//This model handles everything related to the products in database.
 class ProductsModel extends DatabaseClient
 {
     private array $allProducts;
@@ -42,14 +43,7 @@ class ProductsModel extends DatabaseClient
             }
         }
 
-        // foreach ($this->allProducts as $product) {
-        //     if ($product['published_at'] === $closestDate) {
-        //         return $product['name'];
-        //     }
-        // }
     }
-
-
 
 
 }

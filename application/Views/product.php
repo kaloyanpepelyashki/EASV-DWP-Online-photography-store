@@ -77,7 +77,13 @@ $product = $controller->getProduct(); ?>
                     <h2>
                         <?php echo $product->basePrice; ?> DKK
                     </h2>
-                    <p>incl. VAT / excl. shipping</p>
+                    <p style="font-size: 10pt">incl. VAT / excl. shipping</p>
+                    <p style="font-size: 18pt">
+                        Aspect Ratio:
+                        <b>
+                            <?php echo $product->aspectRatio; ?>
+                        </b>
+                    </p>
                     <select id="size" name="size" required>
                         <option value="" selected>Select size &#8250;</option>
                         <option value="10x10">10 x 10cm</option>

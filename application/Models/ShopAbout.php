@@ -2,7 +2,7 @@
 
 namespace Models;
 
-
+//This model stores the shop about information such as tel, email, working hours
 class ShopAbout
 {
     private $dbClient;

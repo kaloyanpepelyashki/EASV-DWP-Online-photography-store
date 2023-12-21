@@ -1,6 +1,7 @@
 <?php
 namespace Models;
 
+//This is the model handling the functionality related to email and email sending
 class EmailSender
 {
     private $regexp = "/^[^0-9][A-z0-9_-]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_-]+)*[.][A-z]{2,4}$/";
@@ -9,23 +10,6 @@ class EmailSender
     public function __construct()
     {
     }
-
-
-
-    // if (!preg_match($regexp,$_POST['email']))
-    // {
-    //     echo "Email wrong";
-    // }
-    // elseif (empty($email) || empty($message) || empty($subject) || empty($name)) 
-    // {
-    //     echo "Empty field";
-    // }
-    // elseif ($_POST['submit'])
-    // {
-    //     $body = "$message\n\nE-mail: $email";
-    //     mail($mymail,$subject,$body,"From: $email , $name , $company\r\n");
-    //     echo "Thanks for your E-mail";
-    // }
 
     public function sendEmail(string $email, string $name, string $subject, string $message, )
     {

@@ -5,6 +5,7 @@ namespace Models;
 
 
 //Class that holds all of the interaction with database
+//This model is responsible for all actions that involve the database (C,R,U,D)
 //!!SINGLETON CLASS!!
 //DON'T INSTANTIATE WITH "new DatabaseClient()";
 //Instead use "DatabaseClient::getInstance()";
