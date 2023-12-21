@@ -21,6 +21,54 @@ $shopAbout = $controller->getShopAbout();
     <meta name="robots" content="noindex" />
     <meta name="googlebot" content="noindex" />
 </head>
+<style>
+    .toggle {
+    margin:0 0 -0.6rem 1rem;
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 2rem;
+    }
+
+    .toggle input {
+    display: none;
+    }
+
+    .roundbutton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background-color: #33455e;
+    display: block;
+    transition: all 0.3s;
+    border-radius: 3.4rem;
+    cursor: pointer;
+    }
+
+    .roundbutton:before {
+    position: absolute;
+    content: "";
+    height: 1.4rem;
+    width: 1.5rem;
+    border-radius: 100%;
+    display: block;
+    left: 0.35rem;
+    bottom: 0.3rem;
+    background-color: white;
+    transition: all 0.3s;
+    }
+
+    input:checked + .roundbutton {
+    background-color: #FF6E48;
+    }
+
+    input:checked + .roundbutton:before  {
+    transform: translate(1.8rem, 0);
+    }
+</style>
 
 <body class="store">
 
@@ -50,8 +98,13 @@ $shopAbout = $controller->getShopAbout();
 
             <div id="orders" class="tabcontent">
                 <h3>Overview of orders</h3>
-                <p>Here we will display an overview of all made orders.</p>
-                <table class="table-orders" border="1" style="color:white; width:100%">
+                <p>Here is an overview of all made orders:</p><br>
+                <p style="display:inline;">Filter delivered purchases:</p>
+                <label class="toggle" style="display:inline-block;">
+                    <input id="toggleswitch" type="checkbox" onchange="toggleTables()">
+                    <span class="roundbutton"></span>
+                </label><br><br>
+                <table id="table1" class="table-orders" border="1" style="color:white; width:100%;">
                     <th>
                         <tr>
                             <td>
@@ -79,6 +132,36 @@ $shopAbout = $controller->getShopAbout();
                             $orderStausOutput = $orderStatus === "f" ? "Not done" : "Done";
 
                             $doneColor = $orderStatus === "f" ? "red" : "green";
+
+                            echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td style='background-color:$doneColor'>$orderStausOutput </td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <table id="table2" class="table-orders" border="1" style="color:white; width:100%; display: none;">
+                    <th>
+                        <tr>
+                            <td>
+                                Id
+                            </td>
+                            <td>
+                                Created at
+                            </td>
+                            <td>
+                                Expected Delivery
+                            </td>
+                            <td>
+                                Delivered
+                            </td>
+                        </tr>
+                    </th>
+                    <tbody>
+                        <?php
+                        foreach ($controller->getAllUndelivered() as $undeliveredProduct) {
+                            $orderId = $undeliveredProduct['id'];
+                            $orderCreatedAt = $undeliveredProduct['created_at'];
+                            $orderExpectedDelivery = $undeliveredProduct['expected_delivery'];
+                            $orderStatus = $undeliveredProduct['done'];
 
                             echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td style='background-color:$doneColor'>$orderStausOutput </td></tr>";
                         }
@@ -180,68 +263,15 @@ $shopAbout = $controller->getShopAbout();
                 <p>CRUD for news. News are displayed on the homepage. They have a date and text contect.</p>
             </div>
     </main>
-    <!-- Not delivered orders table -->
-    <table class="table-orders" border="1" style="color:white; width:100%">
-        <th>
-            <tr>
-                <td>
-                    Id
-                </td>
-                <td>
-                    Created at
-                </td>
-                <td>
-                    Expected Delivery
-                </td>
-                <td>
-                    Delivered
-                </td>
-            </tr>
-        </th>
-        <tbody>
-            <?php
-            foreach ($controller->getAllUndelivered() as $undeliveredProduct) {
-                $orderId = $undeliveredProduct['id'];
-                $orderCreatedAt = $undeliveredProduct['created_at'];
-                $orderExpectedDelivery = $undeliveredProduct['expected_delivery'];
-                $orderStatus = $undeliveredProduct['done'];
 
-                echo "<tr><td>$orderId</td><td>$orderCreatedAt</td><td>$orderExpectedDelivery</td><td > </td></tr>";
-            }
-            ?>
-        </tbody>
-        <!-- FOOTER START -->
-        <?php include 'Components/footer.php'; ?>
-        <!-- FOOTER END -->
-        <script src="../Public/adminPannel.js"></script>
-        <script>
-            // ADMIN PANEL VERTICAL TAB FUNCTION
-            function openTab(evt, tabName) {
+    
 
-                try {
-                    // Declare all variables
-                    var i, tabcontent, tablinks;
-
-                    // Get all elements with class="tabcontent" and hide them
-                    tabcontent = document.getElementsByClassName("tabcontent");
-                    for (i = 0; i < tabcontent.length; i++) {
-                        tabcontent[i].style.display = "none";
-                    }
-
-                    // Get all elements with class="tablinks" and remove the class "active"
-                    tablinks = document.getElementsByClassName("tablinks");
-                    for (i = 0; i < tablinks.length; i++) {
-                        tablinks[i].className = tablinks[i].className.replace(" active", "");
-                    }
-
-                    // Show the current tab, and add an "active" class to the link that opened the tab
-                    document.getElementById(tabName).style.display = "block";
-                    evt.currentTarget.className += " active";
-                } catch (e) {
-                    console.log(e)
-                }
-            }
-        </script>
+    <!-- FOOTER START -->
+    <?php include 'Components/footer.php'; ?>
+    <!-- FOOTER END -->
+    <script src="../Public/adminPannel.js"></script>
+    <script src="../Public/orderOverview.js"></script>
+        
 </body>
 
 </html>
