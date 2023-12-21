@@ -142,6 +142,16 @@ $shopAbout = $controller->getShopAbout();
                     </p>
                 </div>
             </div>
+
+            <div id="daily" class="tabcontent">
+                <h3>Daily</h3>
+                <p>Full CRUD for daily special offer. Select product in question. State discount percentage. Daily offer message maybe?</p>
+            </div>
+
+            <div id="news" class="tabcontent">
+                <h3>News</h3>
+                <p>CRUD for news. News are displayed on the homepage. They have a date and text contect.</p>
+            </div>
     </main>
     <!-- FOOTER START -->
     <?php include 'Components/footer.php'; ?>

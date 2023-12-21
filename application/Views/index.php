@@ -2,12 +2,15 @@
 //ADDITIONAL LOGIC OF THE VIEW GOES HERE
 include_once(__DIR__ . '/../Controllers/HomeController.php');
 include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
+include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
 
 use Controllers as C;
 
 $controller = new C\HomeController();
 //Geting the object of the latest uploaded photo 
 $latestProduct = $controller->getLatestProduct();
+$shopAbout = $controller->getShopInfo();
+$newsMessage = $controller->getNewsMessage();
 
 function renderTableProducts($controller)
 {
@@ -42,8 +45,6 @@ function insertIntoTable(string $table, array $items)
     echo $query;
 }
 
-$testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamster" => "pet"];
-
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +65,22 @@ $testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamste
 
     <main>
 
-        <!--NEWS STARTS HERE-->
-        <article class="wrapper-wide" style="margin-top:8rem;">
+        <!--NEWS MESSAGE STARTS HERE-->
+        <article class="wrapper-wide" style="margin-top: 4rem;">
+            <div class="box" id="myBox">
+                <div class="close-button" onclick="closeBox()">
+                    <i class="fa-solid fa-x" style="color:white;"></i>
+                </div>
+                <p>
+                    <?php echo $newsMessage['newsMessageText']; ?><br>
+                    News date: <?php echo $newsMessage['newsMessageDate']; ?>
+                </p>
+            </div>
+        </article>
+        
+
+        <!--DAILY OFFER STARTS HERE-->
+        <article class="wrapper-wide">
             <div class="pathname-container"></div>
             <div class="grid-container fifty-fifty">
                 <div class="grid-item">
@@ -95,9 +110,6 @@ $testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamste
             </section>
         </article>
         <!-- PRODUCTS SECTION END -->
-        <p style="color:white">
-            <?php insertIntoTable("kon", $testArray); ?>
-        </p>
         <?php include_once("Components/email-form.php"); ?>
         <!-- ABOUT START -->
         <hr class="semi" />
@@ -105,25 +117,14 @@ $testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamste
         <article class="wrapper-standard">
             <hr class="reveal" />
             <h1 class="reveal">ABOUT</h1>
-            <div id=" shoppingCartFrontEnd"></div>
-
 
             <p class="reveal">
-                Greetings from Denmark! As a Czech-born multimedia design student 🇨🇿,
-                I'm bringing the Slavic spirit to my new venture,
-                <a href="https://www.slavicmedia.dk" target="_blank" rel="noopener noreferrer">Slavic Media</a>
-                – small but mighty!
+                <?php echo $shopAbout['shopAboutText']; ?> <br>
             </p>
             <p class="reveal">
-                I'm a Canon-wielding photography enthusiast with a side of iPhone, and
-                a website wizard, thanks to my multimedia studies on
-                <a href="https://www.iba.dk/fuldtidsuddannelser" target="_blank"
-                    rel="noopener noreferrer">Erhversakademi Kolding</a>.
-            </p>
-            <p class="reveal">
-                Former
-                <a href="https://www.flickr.com/photos/141401020@N03/" target="_blank" rel="noopener noreferrer">LEGO
-                    architect</a>, current purveyor of digital aesthetics and sarcasm.
+                Telephone number: <?php echo $shopAbout['ownerTelNumber']; ?> <br>
+                Contact email: <?php echo $shopAbout['ownerMail']; ?> <br>
+                Opening/closing hours: <?php echo $shopAbout['openingHour']; ?> - <?php echo $shopAbout['closingHour']; ?> <br><br>
             </p>
             <hr class="reveal" />
         </article>
@@ -156,7 +157,7 @@ $testArray = ["horse" => "animal", "dog" => "animal", "cow" => "animal", "hamste
                     xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                     xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
 
-                    xlr.onreadystatechange = func tion() {
+                    xlr.onreadystatechange = function() {
                         if (xlr.readyState == 4) {
                             responeText = xlr.responseText;
 

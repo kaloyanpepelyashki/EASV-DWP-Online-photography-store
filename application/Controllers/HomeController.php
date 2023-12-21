@@ -7,6 +7,7 @@ include_once(__DIR__ . '/../Models/DatabaseClient.php');
 include_once(__DIR__ . '/../Models/ProductsModel.php');
 include_once(__DIR__ . '/../Models/ShopAbout.php');
 include_once(__DIR__ . '/../Models/ShoppingCart.php');
+include_once(__DIR__ . '/../Models/NewsMessage.php');
 
 
 class HomeController
@@ -18,12 +19,15 @@ class HomeController
 
     private $shoppingCart;
 
+    private $newsMessage;
+
     public function __construct()
     {
         $this->dBClient = M\DatabaseClient::getInstance();
         $this->productsModel = new M\ProductsModel();
         $this->shopInfoModel = new M\ShopAbout();
         $this->shoppingCart = M\ShoppingCart::getInstance();
+        $this->newsMessage = new M\NewsMessage();
     }
 
     public function getDatabaseClient()
@@ -48,7 +52,7 @@ class HomeController
 
     public function getShopInfo()
     {
-        return $this->shopInfoModel;
+        return $this->shopInfoModel->getShopAbout();
     }
 
     public function getShoppingCartItems()
@@ -59,6 +63,11 @@ class HomeController
     public function getLatestProduct()
     {
         return $this->productsModel->getLatestProduct();
+    }
+
+    public function getNewsMessage()
+    {
+        return $this->newsMessage->getNewsMessage();
     }
 
 }

@@ -163,6 +163,12 @@ if (document.body.id === "store-checkout") {
     }
   });
 }
+// KILL NEWS MESSAGE BOX
+function closeBox() {
+  var box = document.getElementById('myBox');
+  box.style.display = 'none';
+}
+
 // ADMIN PANEL VERTICAL TAB FUNCTION
 function openTab(evt, tabName) {
   // Declare all variables

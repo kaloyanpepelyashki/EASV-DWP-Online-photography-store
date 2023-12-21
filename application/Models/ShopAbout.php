@@ -8,6 +8,7 @@ class ShopAbout
     private $dbClient;
     private string $shopAboutText;
     private string $shopOwnerTel;
+    private string $shopOwnerMail;
     private string $openingHour;
     private string $closingHour;
 
@@ -18,13 +19,14 @@ class ShopAbout
         $getInfo = DatabaseClient::getInstance()->getAllFromTable('shopInfo');
         $this->shopAboutText = $getInfo[0]["about"];
         $this->shopOwnerTel = $getInfo[0]["owner_phone"];
+        $this->shopOwnerMail = $getInfo[0]["owner_email"];
         $this->openingHour = $getInfo[0]["opening_hour"];
         $this->closingHour = $getInfo[0]["closing_hour"];
     }
 
     public function getShopAbout(): array|null
     {
-        $shopInfo = array("shopAboutText" => $this->shopAboutText, "ownerTelNumber" => $this->shopOwnerTel, "openingHour" => $this->openingHour, "closingHour" => $this->closingHour);
+        $shopInfo = array("shopAboutText" => $this->shopAboutText, "ownerTelNumber" => $this->shopOwnerTel, "ownerMail" => $this->shopOwnerMail, "openingHour" => $this->openingHour, "closingHour" => $this->closingHour);
 
         if (count($shopInfo) < 0) {
             return null;
