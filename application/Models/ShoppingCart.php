@@ -2,6 +2,7 @@
 namespace Models;
 
 //Class that represents the shopping cart
+//This model models the functionality of a shopping cart
 //!!SINGLETON CLASS!!
 //DON'T INSTANTIATE WITH "new ShoppingCart()";
 //Instead use "ShoppingCart::getInstance()";

@@ -62,7 +62,7 @@ function updateShopOwnerTel() {
   let newValue = document.getElementById("shopOwnerTel").value;
 
   //Checks if the sumbmitted value is not an empty string
-  if (sanitize(newValue) != null && sanitize(newValue).length > 10) {
+  if (sanitize(newValue) != null && sanitize(newValue).length > 9) {
     try {
       xlr = new XMLHttpRequest();
       xlr.open("POST", endPoint, true);
@@ -75,12 +75,19 @@ function updateShopOwnerTel() {
 
       xlr.onreadystatechange = function () {
         try {
-          if (this.readyState === 4) {
+          if (this.readyState == 4) {
             console.log(`XLR Status: ${(this.status, this.responseText)}`);
 
             console.log("Update sent");
             if (this.status === 200) {
               console.log(xlr.responseText);
+              window.alert("Updating telephone number");
+              window.location.reload();
+            }
+          } else if (this.readyState == 3) {
+            if (this.status === 200) {
+              window.alert("Updating telephone number successful");
+              window.location.reload();
             }
           } else {
             console.log(this.readyState);
@@ -97,7 +104,7 @@ function updateShopOwnerTel() {
     } catch (e) {
       console.error(e);
     }
-  } else {
+  } else if (sanitize(newValue) == null || sanitize(newValue).length < 9) {
     window.alert("Please provide a valid telephone number");
   }
 }

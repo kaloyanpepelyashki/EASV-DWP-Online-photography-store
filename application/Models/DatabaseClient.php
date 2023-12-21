@@ -2,6 +2,19 @@
 
 namespace Models;
 
+$envFile = __DIR__ . '../../.env';
+$lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+foreach ($lines as $line) {
+    //If the line is a comment it just skips it
+    if (strpos(trim($line), '#') === 0) {
+        continue;
+    }
+    list($name, $value) = explode('=', $line, 2);
+    $name = trim($name);
+    $value = trim($value);
+    putenv("$name=$value");
+}
+
 
 
 //Class that holds all of the interaction with database
@@ -13,7 +26,7 @@ class DatabaseClient
 {
     private static $instance;
     private string $supabaseUrl;
-    private $port;
+    private int $port;
     private string $user;
     private string $password;
     private string $supabaseApiKey;
@@ -21,11 +34,16 @@ class DatabaseClient
 
     protected function __construct()
     {
-        $this->supabaseUrl = "https://vuuiepkmjneplgvssvhc.supabase.co/rest/v1/";
-        $this->supabaseApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1dWllcGttam5lcGxndnNzdmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNDA4ODIsImV4cCI6MjAxNDkxNjg4Mn0.QfI5GY0eWPmpG9XBpuUy7yTQHwSlJRtGtnk0bkwQtmU";
-        $this->port = 5432;
-        $this->user = "postgres";
-        $this->password = "DWP_1244_p2121";
+        // $this->supabaseUrl = "https://vuuiepkmjneplgvssvhc.supabase.co/rest/v1/";
+        $this->supabaseUrl = getenv('SUPABASE_URL', true);
+        // $this->supabaseApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1dWllcGttam5lcGxndnNzdmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNDA4ODIsImV4cCI6MjAxNDkxNjg4Mn0.QfI5GY0eWPmpG9XBpuUy7yTQHwSlJRtGtnk0bkwQtmU";
+        $this->supabaseApiKey = getenv('SUPABASE_API_KEY', true);
+        // $this->port = 5432;
+        $this->port = getenv('SUPABASE_PORT', true);
+        // $this->user = "postgres";
+        $this->user = getenv('SUPABASE_USER', true);
+        // $this->password = "DWP_1244_p2121";
+        $this->password = getenv('SUPABASE_PASS');
 
         //Establishing connection to the database
         $this->dbConnection = pg_connect("user=$this->user password=$this->password host=db.vuuiepkmjneplgvssvhc.supabase.co port=$this->port dbname=postgres");
