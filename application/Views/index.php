@@ -4,6 +4,8 @@ include_once(__DIR__ . '/../Controllers/HomeController.php');
 include_once(__DIR__ . '/../Controllers/ShoppingCartController.php');
 include_once(__DIR__ . '/../Controllers/AdminPannelController.php');
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 use Controllers as C;
 
 $controller = new C\HomeController();
@@ -21,28 +23,6 @@ function renderTableProducts($controller)
         $productPrice = $product["base_price"];
         echo "<div class='grid-item' id='product-component'><a href='/product/productid?id=$productId'><img  src='$productUrl'><a><div class='text-wrapper flex-center'><h3>$productName</h3><p>From $productPrice DKK</p><a href='/product/productid?id=$productId' class='cta cta-2 flex-center'>Buy</a></div></div>";
     }
-}
-function insertIntoTable(string $table, array $items)
-{
-
-    function getArrayKeys($items)
-    {
-        foreach (array_keys($items) as $keys) {
-            return "'" . implode("', '", array_keys($items)) . "'";
-        }
-
-    }
-
-    function getArrayValues(array $items)
-    {
-        foreach (array_values($items) as $value) {
-            return "'" . implode("', '", array_values($items)) . "'";
-        }
-    }
-
-    $query = "INSERT INTO $table (" . getArrayKeys($items) . ") VALUES ( " . getArrayValues($items) . ")";
-
-    echo $query;
 }
 
 ?>
@@ -77,7 +57,7 @@ function insertIntoTable(string $table, array $items)
                 </p>
             </div>
         </article>
-        
+
 
         <!--DAILY OFFER STARTS HERE-->
         <article class="wrapper-wide">
@@ -124,7 +104,8 @@ function insertIntoTable(string $table, array $items)
             <p class="reveal">
                 Telephone number: <?php echo $shopAbout['ownerTelNumber']; ?> <br>
                 Contact email: <?php echo $shopAbout['ownerMail']; ?> <br>
-                Opening/closing hours: <?php echo $shopAbout['openingHour']; ?> - <?php echo $shopAbout['closingHour']; ?> <br><br>
+                Opening/closing hours: <?php echo $shopAbout['openingHour']; ?> -
+                <?php echo $shopAbout['closingHour']; ?> <br><br>
             </p>
             <hr class="reveal" />
         </article>
@@ -132,46 +113,46 @@ function insertIntoTable(string $table, array $items)
     </main>
     <script src="../Public/cartInteractions.js"></script>
     <script>
-        function sendEmail() {
-            let email = document.getElementById("email").value;
-            let name = document.getElementById("name").value;
-            let subject = document.getElementById("subject").value;
-            let message = document.getElementById("message").value;
-            let company = document.getElementById("company").value;
+    function sendEmail() {
+        let email = document.getElementById("email").value;
+        let name = document.getElementById("name").value;
+        let subject = document.getElementById("subject").value;
+        let message = document.getElementById("message").value;
+        let company = document.getElementById("company").value;
 
-            if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
-                window.alert("Please fill out all fields");
+        if (email.length <= 0 || name.length <= 0 || subject.length <= 0 || message.length <= 0) {
+            window.alert("Please fill out all fields");
 
-            } else {
-                let emailObject = {
-                    email: email,
-                    name: name,
-                    subject: subject,
-                    message: message,
-                    company: company.length > 0 ?? company | "none",
-                }
+        } else {
+            let emailObject = {
+                email: email,
+                name: name,
+                subject: subject,
+                message: message,
+                company: company.length > 0 ?? company | "none",
+            }
 
-                try {
-                    const xlr = new XMLHttpRequest();
-                    xlr.open("POST", "/sendEmail?action=send", true);
-                    xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                    xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
+            try {
+                const xlr = new XMLHttpRequest();
+                xlr.open("POST", "/sendEmail?action=send", true);
+                xlr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xlr.send(`action=send&emailObject=${JSON.stringify(emailObject)}`);
 
-                    xlr.onreadystatechange = function() {
-                        if (xlr.readyState == 4) {
-                            responeText = xlr.responseText;
+                xlr.onreadystatechange = function() {
+                    if (xlr.readyState == 4) {
+                        responeText = xlr.responseText;
 
-                            console.log(responeText);
-                            if (xlr.status == 200) {
-                                console.log("email sent successfully");
-                            }
+                        console.log(responeText);
+                        if (xlr.status == 200) {
+                            console.log("email sent successfully");
                         }
                     }
-                } catch (e) {
-                    console.error("Error sending email :" + e.message);
                 }
+            } catch (e) {
+                console.error("Error sending email :" + e.message);
             }
         }
+    }
     </script>
 </body>
 <?php include_once("Components/footer.php"); ?>
