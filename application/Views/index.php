@@ -108,6 +108,7 @@ function renderTableProducts($controller, $products)
                 Telephone number:
                 <?php echo $shopAbout['ownerTelNumber']; ?> <br>
                 Contact email:
+                <?php echo $shopAbout['ownerMail']; ?> <br>
 
                 Opening/closing hours:
                 <b>

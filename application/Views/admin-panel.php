@@ -194,15 +194,16 @@ $shopAbout = $controller->getShopAbout();
                         <?php
                         $shopAboutText = $shopAbout['about'];
                         $shopOwnerTel = $shopAbout['ownerTelNumber'];
+                        $shopMail = $shopAbout['ownerMail'];
                         $shopWorkingTime = $shopAbout['openingHour'] . " - " . $shopAbout['closingHour'];
-                        echo "<tr><td>$shopAboutText</td><td>sdadas</td><td>$shopOwnerTel</td><td>$shopWorkingTime</td></tr>";
+                        echo "<tr><td>$shopAboutText</td><td>$shopMail</td><td>$shopOwnerTel</td><td>$shopWorkingTime</td></tr>";
                         ?>
                     </tbody>
-                </table>
-                <input type="text" id="shopInfoAboutText" placeholder="update About info" />
-                <button onclick="updateShopAbout()" type="button">Update</button>
-                <input type="text" id="shopOwnerTel" placeholder="update owner telephone" />
-                <button onclick="updateShopOwnerTel()" type="button">Update</button>
+                </table><br>
+                <input type="text" id="shopInfoAboutText" placeholder="update About info" /><br>
+                <button class="cta" onclick="updateShopAbout()" type="button">Update</button><br><br>
+                <input type="text" id="shopOwnerTel" placeholder="update owner telephone" /><br>
+                <button class="cta" onclick="updateShopOwnerTel()" type="button">Update</button>
             </div>
 
             <div id="products" class="tabcontent">
