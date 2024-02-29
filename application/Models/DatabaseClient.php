@@ -2,10 +2,11 @@
 
 namespace Models;
 
+// Load environment variables from the .env file
 $envFile = __DIR__ . '../../.env';
 $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 foreach ($lines as $line) {
-    //If the line is a comment it just skips it
+    // If the line is a comment, skip it
     if (strpos(trim($line), '#') === 0) {
         continue;
     }
@@ -15,206 +16,184 @@ foreach ($lines as $line) {
     putenv("$name=$value");
 }
 
-
-
-//Class that holds all of the interaction with database
-//This model is responsible for all actions that involve the database (C,R,U,D)
-//!!SINGLETON CLASS!!
-//DON'T INSTANTIATE WITH "new DatabaseClient()";
-//Instead use "DatabaseClient::getInstance()";
 class DatabaseClient
 {
+    // Singleton instance
     private static $instance;
-    private string $supabaseUrl;
+
+    // Database connection parameters
+    private string $host;
     private int $port;
     private string $user;
     private string $password;
-    private string $supabaseApiKey;
     private $dbConnection;
 
+    // Constructor is protected to enforce singleton pattern
     protected function __construct()
     {
-        // $this->supabaseUrl = "https://vuuiepkmjneplgvssvhc.supabase.co/rest/v1/";
-        $this->supabaseUrl = getenv('SUPABASE_URL', true);
-        // $this->supabaseApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1dWllcGttam5lcGxndnNzdmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNDA4ODIsImV4cCI6MjAxNDkxNjg4Mn0.QfI5GY0eWPmpG9XBpuUy7yTQHwSlJRtGtnk0bkwQtmU";
-        $this->supabaseApiKey = getenv('SUPABASE_API_KEY', true);
-        // $this->port = 5432;
-        $this->port = getenv('SUPABASE_PORT', true);
-        // $this->user = "postgres";
-        $this->user = getenv('SUPABASE_USER', true);
-        // $this->password = "DWP_1244_p2121";
-        $this->password = getenv('SUPABASE_PASS');
+        // Set default database connection parameters
+        $this->host = "mysql23.unoeuro.com";
+        $this->port = 3306;
+        $this->user = "okonord_dk";
+        $this->password = "Afwcpyadm2RrFHteb5kD";
 
-        //Establishing connection to the database
-        $this->dbConnection = pg_connect("user=$this->user password=$this->password host=db.vuuiepkmjneplgvssvhc.supabase.co port=$this->port dbname=postgres");
+        // Establishing connection to the MySQL database
+        $this->dbConnection = mysqli_connect($this->host, $this->user, $this->password, 'mysqli', $this->port);
 
-        //Checking if the connection was not established
+        // Check if the connection is successful
         if (!$this->dbConnection) {
-            die("Error connecting to database:" . pg_last_error());
+            die("Error connecting to MySQL database: " . mysqli_connect_error());
         }
-
     }
 
+    // Clone method is private to enforce singleton pattern
     protected function __clone()
     {
     }
 
-    //The static method for getting instance
+    // Get singleton instance of DatabaseClient
     public static function getInstance()
     {
-
         if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
     }
 
+    // Close the database connection
     public function closeConnection()
     {
-        pg_close($this->dbConnection);
+        mysqli_close($this->dbConnection);
     }
 
-    //Bussiness Logic methods
+    // Business Logic methods
 
-    //This method returns all items from a table
-    //The table is being specified as a string argument
+    // This method returns all items from a table
     public function getAllFromTable(string $table): array|null
     {
         try {
-
+            // Construct and execute the SELECT query
             $query = "SELECT * FROM $table";
+            $result = mysqli_query($this->dbConnection, $query);
 
-            $result = pg_query($this->dbConnection, $query);
-
+            // Check if the query is successful
             if (!$result) {
-                die("Query failed: " . pg_last_error());
+                die("Query failed: " . mysqli_error($this->dbConnection));
             }
-            $data = pg_fetch_all($result);
+
+            // Fetch all rows as associative array
+            $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             // Free the result set
-            pg_free_result($result);
-
-            // Close the database connection
-            // pg_close($this->dbConnection);
+            mysqli_free_result($result);
 
             return $data;
-            // //We query the data with a simple http get request
         } catch (\Exception $e) {
-            //Handling exceptions in the catch block
-            echo "Error retreiving data: {$e->getMessage()}";
+            echo "Error retrieving data: {$e->getMessage()}";
             throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
         }
-
     }
 
-    //Gets an item from a table based on ID
+    // Gets an item from a table based on ID
     public function getSpecificID_FromTable(string $table, int $id)
     {
         try {
-
+            // Construct and execute the SELECT query with a WHERE clause
             $query = "SELECT * FROM $table WHERE id=$id";
+            $result = mysqli_query($this->dbConnection, $query);
 
-            $result = pg_query($this->dbConnection, $query);
-
+            // Check if the query is successful
             if (!$result) {
-                die("Query failed: " . pg_last_error());
+                die("Query failed: " . mysqli_error($this->dbConnection));
             }
-            $data = pg_fetch_all($result);
+
+            // Fetch all rows
+            $data = mysqli_fetch_all($result);
 
             // Free the result set
-            pg_free_result($result);
-
-            // Close the database connection
-            // pg_close($this->dbConnection);
+            mysqli_free_result($result);
 
             return $data;
-
         } catch (\Exception $e) {
-            echo "Error retreiving data: {$e->getMessage()}";
+            echo "Error retrieving data: {$e->getMessage()}";
             throw new \RuntimeException("Error retrieving data: {$e->getMessage()}", $e->getCode(), $e);
         }
     }
 
-    //Updates a table based on a new value
+    // Updates a table based on a new value
     public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
         try {
+            // Construct and execute the UPDATE query
             $query = "UPDATE $table SET $columnToUpdate='$newValue' WHERE id=$idToUpdate";
+            $result = mysqli_query($this->dbConnection, $query)($this->dbConnection, $query);
 
-            $result = pg_query($this->dbConnection, $query);
-
+            // Check if the query is successful
             if (!$result) {
-                die("Query failed, update table by id" . pg_last_error());
+                die("Query failed, update table by id" . mysqli_error($this->dbConnection));
             }
 
-            $data = pg_fetch_all($result);
+            // Fetch all rows
+            $data = mysqli_fetch_all($result);
 
             // Free the result set
-            pg_free_result($result);
-
+            mysqli_free_result($result);
 
             return $data;
-
-
         } catch (\PDOException $e) {
             echo "Error updating data: {$e->getMessage()}";
             throw new \RuntimeException("Error updating data: {$e->getMessage()}", $e->getCode(), $e);
         }
-
     }
 
+    // Inserts into a table
     public function insertIntoTable(string $table, array $items)
     {
-
+        // Helper function to get keys of an array as a string
         function getArrayKeys($items)
         {
             return "'" . implode("', '", array_keys($items)) . "'";
         }
 
+        // Helper function to get values of an array as a string
         function getArrayValues(array $items)
         {
-
             return "'" . implode("', '", array_values($items)) . "'";
-
         }
 
         try {
+            // Construct and execute the INSERT query
             $query = "INSERT INTO $table (" . getArrayKeys($items) . ") VALUES ( " . getArrayValues($items) . ")";
+            $result = mysqli_query($this->dbConnection, $query);
 
-            $result = pg_query($this->dbConnection, $query);
-
+            // Check if the query is successful
             if (!$result) {
-                die("Query failed, insert into $table" . pg_last_error());
+                die("Query failed, insert into $table" . mysqli_last_error());
             }
         } catch (\Exception $e) {
-            throw new \RuntimeException("Error inserting into tabl : " . $e->getMessage());
+            throw new \RuntimeException("Error inserting into table: " . $e->getMessage());
         }
     }
 
-    //Authentication method for authenticating and admin using the database
+    // Authentication method for authenticating an admin using the database
     public function AuthenticationLogIn(string $password, string $username): bool
     {
         try {
+            // Construct and execute the SELECT query with parameters
             $query = "SELECT * FROM administrators WHERE password=$1 AND username=$2";
+            $result = mysqli_query_params($this->dbConnection, $query, array($password, $username));
 
-            $result = pg_query_params($this->dbConnection, $query, array($password, $username));
-
+            // Check if the query is successful
             if (!$result) {
-                echo "Error connecting to database" . pg_last_error();
-                die("Error connecting to database" . pg_last_error());
-
+                echo "Error connecting to database" . mysqli_last_error();
+                die("Error connecting to database" . mysqli_last_error());
             } else {
-                // $numRows = pg_num_rows($result);
-                // echo "Number of rows: $numRows<br>";
-                // $rs = pg_fetch_result($result, 1, 1);
-
-                $row = pg_fetch_assoc($result);
+                // Fetch the first row as an associative array
+                $row = mysqli_fetch_assoc($result);
                 return $row !== false;
             }
-
         } catch (\PDOException $e) {
-            throw new \RuntimeException("Error authenticating : " . $e->getMessage());
+            throw new \RuntimeException("Error authenticating: " . $e->getMessage());
         }
     }
-
 }

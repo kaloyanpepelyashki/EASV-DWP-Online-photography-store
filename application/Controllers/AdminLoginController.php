@@ -30,22 +30,23 @@ class AdminLoginController
             $_SESSION['authState'] = false;
         }
     }
+    public function signIn(string $password, string $username): bool {
+    try {
+        // Hash the password using bcrypt
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    public function signIn(string $password, string $username): bool
-    {
-        try {
-            $hashedPassword = sha1($password);
-
-            if (!empty($hashedPassword)) {
-                return $this->dbClient->AuthenticationLogIn($hashedPassword, $username);
-            } else {
-                return false;
-            }
-        } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
-            throw new \RuntimeException("Error authenticating:" . $e->getMessage());
+        if ($hashedPassword !== false) {
+            // Perform authentication with the hashed password
+            return $this->dbClient->AuthenticationLogIn($hashedPassword, $username);
+        } else {
+            return false;
         }
+    } catch (\Exception $e) {
+        echo "Error: " . $e->getMessage();
+        throw new \RuntimeException("Error authenticating:" . $e->getMessage());
     }
+}
+
 
     //This method updates the authentication state
     public function setAuthState(string $password, string $username): bool
