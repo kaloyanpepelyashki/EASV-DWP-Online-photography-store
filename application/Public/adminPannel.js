@@ -1,3 +1,4 @@
+// Function to sanitize a given string by replacing special characters with their HTML entities.
 function sanitize(string) {
   const map = {
     "&": "&amp;",
@@ -11,28 +12,37 @@ function sanitize(string) {
   return string.replace(reg, (match) => map[match]);
 }
 
+// Function to update the about text of the shop.
 function updateShopAbout() {
+  // Define the endpoint for the admin panel controller.
   const endPoint = "/adminPannelController";
 
+  // Get the new value from the "shopInfoAboutText" input field.
   let newValue = document.getElementById("shopInfoAboutText").value;
 
+  // Check if the new value is not null and has a length greater than 10 characters.
   if (newValue != null && newValue.length > 10) {
     try {
+      // Create a new XMLHttpRequest object.
       xlr = new XMLHttpRequest();
       xlr.open("POST", endPoint, true);
       xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      // Send a request to update the about text with the sanitized new value.
       xlr.send(
         `action=updateAboutText&newText=${encodeURIComponent(
           JSON.stringify(sanitize(newValue))
         )}`
       );
 
+      // Define the callback function to handle the response.
       xlr.onreadystatechange = function () {
         try {
           if (this.readyState === 4) {
             console.log(`XLR Status: ${(this.status, this.responseText)}`);
-
             console.log("Update sent");
+
+            // Check if the response status is 200 and log the response text.
             if (this.status === 200) {
               console.log(xlr.responseText);
             }
@@ -50,41 +60,51 @@ function updateShopAbout() {
       console.error(e);
     }
   } else {
-    window.alert("Please provide a valid text input");
+    // Display an alert if the input is invalid.
+    window.alert(
+      "Please provide a valid text input (minimum length: 10 characters)"
+    );
   }
 }
 
-//This method updates the shop owner telephone number.
+// Function to update the shop owner's telephone number.
 function updateShopOwnerTel() {
+  // Define the endpoint for the admin panel controller.
   const endPoint = "/adminPannelController";
 
-  //Gets the new value inserted by the user
+  // Get the new value from the "shopOwnerTel" input field.
   let newValue = document.getElementById("shopOwnerTel").value;
 
-  //Checks if the sumbmitted value is not an empty string
+  // Check if the sanitized new value is not null and has a length greater than 9 characters.
   if (sanitize(newValue) != null && sanitize(newValue).length > 9) {
     try {
+      // Create a new XMLHttpRequest object.
       xlr = new XMLHttpRequest();
       xlr.open("POST", endPoint, true);
       xlr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      // Send a request to update the owner's telephone number with the sanitized new value.
       xlr.send(
         `action=updateOwnerTel&newTel=${encodeURIComponent(
           JSON.stringify(sanitize(newValue))
         )}`
       );
 
+      // Define the callback function to handle the response.
       xlr.onreadystatechange = function () {
         try {
           if (this.readyState == 4) {
             console.log(`XLR Status: ${(this.status, this.responseText)}`);
-
             console.log("Update sent");
+
+            // Check if the response status is 200 and log the response text.
             if (this.status === 200) {
               console.log(xlr.responseText);
               window.alert("Updating telephone number");
               window.location.reload();
             }
           } else if (this.readyState == 3) {
+            // Check if the response status is 200 when the request is in progress.
             if (this.status === 200) {
               window.alert("Updating telephone number successful");
               window.location.reload();
@@ -105,6 +125,9 @@ function updateShopOwnerTel() {
       console.error(e);
     }
   } else if (sanitize(newValue) == null || sanitize(newValue).length < 9) {
-    window.alert("Please provide a valid telephone number");
+    // Display an alert if the input is invalid.
+    window.alert(
+      "Please provide a valid telephone number (minimum length: 9 digits)"
+    );
   }
 }

@@ -21,7 +21,7 @@ namespace Views;
     <article class="wrapper-narrow flex-center">
       <div class="pathname-container"></div>
       <div class="lottie">
-        <dotlottie-player src="https://adamsochorec.com/assets/lottie/error3.1.lottie" background="transparent"
+        <dotlottie-player src="https://adamsochorec.com/error3.1.lottie" background="transparent"
           speed="0.7" loop class="reveal" autoplay></dotlottie-player>
       </div>
       <h1>The page you are looking<br />for cannot be found.</h1>

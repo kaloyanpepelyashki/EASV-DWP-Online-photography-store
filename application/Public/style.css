@@ -62,7 +62,7 @@
 @font-face {
   font-family: "IBM";
   font-weight: var(--heading-weight);
-  src: url(IBM.ttf) format("truetype");
+  src: url(https://adamsochorec.com/IBM.ttf) format("truetype");
 }
 @font-face {
   font-family: "BigBlue";

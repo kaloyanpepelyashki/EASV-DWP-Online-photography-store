@@ -16,6 +16,11 @@ foreach ($lines as $line) {
     putenv("$name=$value");
 }
 
+/**
+ * Class DatabaseClient
+ * 
+ * Represents a client for interacting with the database.
+ */
 class DatabaseClient
 {
     // Singleton instance
@@ -28,7 +33,11 @@ class DatabaseClient
     private string $password;
     private $dbConnection;
 
-    // Constructor is protected to enforce singleton pattern
+    /**
+     * DatabaseClient constructor.
+     * 
+     * Initializes the database connection parameters and establishes a connection to the MySQL database.
+     */
     protected function __construct()
     {
         // Set default database connection parameters
@@ -46,12 +55,20 @@ class DatabaseClient
         }
     }
 
-    // Clone method is private to enforce singleton pattern
+    /**
+     * DatabaseClient clone method.
+     * 
+     * Prevents cloning of the DatabaseClient instance.
+     */
     protected function __clone()
     {
     }
 
-    // Get singleton instance of DatabaseClient
+    /**
+     * Get singleton instance of DatabaseClient.
+     * 
+     * @return DatabaseClient The singleton instance of DatabaseClient.
+     */
     public static function getInstance()
     {
         if (self::$instance === null) {
@@ -60,7 +77,9 @@ class DatabaseClient
         return self::$instance;
     }
 
-    // Close the database connection
+    /**
+     * Close the database connection.
+     */
     public function closeConnection()
     {
         mysqli_close($this->dbConnection);
@@ -68,7 +87,13 @@ class DatabaseClient
 
     // Business Logic methods
 
-    // This method returns all items from a table
+    /**
+     * Get all items from a table.
+     * 
+     * @param string $table The name of the table.
+     * @return array|null The array of items from the table, or null if the query fails.
+     * @throws \RuntimeException If there is an error retrieving the data.
+     */
     public function getAllFromTable(string $table): array|null
     {
         try {
@@ -94,7 +119,14 @@ class DatabaseClient
         }
     }
 
-    // Gets an item from a table based on ID
+    /**
+     * Get an item from a table based on ID.
+     * 
+     * @param string $table The name of the table.
+     * @param int $id The ID of the item.
+     * @return array The item from the table.
+     * @throws \RuntimeException If there is an error retrieving the data.
+     */
     public function getSpecificID_FromTable(string $table, int $id)
     {
         try {
@@ -120,14 +152,22 @@ class DatabaseClient
         }
     }
 
-    // Updates a table based on a new value
+    /**
+     * Update a table based on a new value.
+     * 
+     * @param string $table The name of the table.
+     * @param int $idToUpdate The ID of the item to update.
+     * @param string $columnToUpdate The column to update.
+     * @param string $newValue The new value.
+     * @return array The updated data.
+     * @throws \RuntimeException If there is an error updating the table.
+     */
     public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
     {
         try {
             // Construct and execute the UPDATE query
             $query = "UPDATE $table SET $columnToUpdate='$newValue' WHERE id=$idToUpdate";
             $result = mysqli_query($this->dbConnection, $query)($this->dbConnection, $query);
-
             // Check if the query is successful
             if (!$result) {
                 die("Query failed, update table by id" . mysqli_error($this->dbConnection));
@@ -146,7 +186,13 @@ class DatabaseClient
         }
     }
 
-    // Inserts into a table
+    /**
+     * Insert into a table.
+     * 
+     * @param string $table The name of the table.
+     * @param array $items The items to insert.
+     * @throws \RuntimeException If there is an error inserting into the table.
+     */
     public function insertIntoTable(string $table, array $items)
     {
         // Helper function to get keys of an array as a string
@@ -175,7 +221,14 @@ class DatabaseClient
         }
     }
 
-    // Authentication method for authenticating an admin using the database
+    /**
+     * Authentication method for authenticating an admin using the database.
+     * 
+     * @param string $password The admin's password.
+     * @param string $username The admin's username.
+     * @return bool True if the authentication is successful, false otherwise.
+     * @throws \RuntimeException If there is an error authenticating.
+     */
     public function AuthenticationLogIn(string $password, string $username): bool
     {
         try {
