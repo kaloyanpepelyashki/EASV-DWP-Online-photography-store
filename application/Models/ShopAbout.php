@@ -23,13 +23,13 @@ class ShopAbout
         
         // Retrieve information from the 'shopInfo' table
         $getInfo = DatabaseClient::getInstance()->getAllFromTable('shopInfo');
-        
+
         // Assign the retrieved shop information to the corresponding properties
         $this->shopAboutText = $getInfo[0]["about"];
-        $this->shopOwnerTel = $getInfo[0]["owner_phone"];
-        $this->shopOwnerMail = $getInfo[0]["owner_email"];
-        $this->openingHour = $getInfo[0]["opening_hour"];
-        $this->closingHour = $getInfo[0]["closing_hour"];
+        $this->shopOwnerTel = $getInfo[0]["ownerPhone"];
+        $this->shopOwnerMail = $getInfo[0]["ownerEmail"];
+        $this->openingHour = $getInfo[0]["openingHour"];
+        $this->closingHour = $getInfo[0]["closingHour"];
     }
 
     /**

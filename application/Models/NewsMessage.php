@@ -17,7 +17,7 @@ class NewsMessage {
         $this->dbClient = DatabaseClient::getInstance();
         
         // Retrieve information from the 'news' table
-        $getInfo = $this->dbClient->getAllFromTable('news');
+        $getInfo = $this->dbClient->getAllFromTable('News');
         
         // Assign the retrieved news message and date to the corresponding properties
         $this->newsMessageText = $getInfo[0]["news"];

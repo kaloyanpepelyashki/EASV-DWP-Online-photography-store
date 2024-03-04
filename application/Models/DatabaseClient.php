@@ -41,13 +41,14 @@ class DatabaseClient
     protected function __construct()
     {
         // Set default database connection parameters
-        $this->host = "mysql23.unoeuro.com";
+        $this->host = "db";
         $this->port = 3306;
-        $this->user = "okonord_dk";
-        $this->password = "Afwcpyadm2RrFHteb5kD";
+        $this->user = "user";
+        $this->password = "user";
+        $this->database = "store";
 
         // Establishing connection to the MySQL database
-        $this->dbConnection = mysqli_connect($this->host, $this->user, $this->password, 'mysqli', $this->port);
+        $this->dbConnection = mysqli_connect($this->host, $this->user, $this->password, $this->database, $this->port);
 
         // Check if the connection is successful
         if (!$this->dbConnection) {

@@ -1,18 +1,12 @@
-DROP DATABASE IF EXISTS storeDB;
-
-CREATE DATABASE storeDB;
-
-USE storeDB;
-
-CREATE TABLE Customer (
-    customerID int NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+CREATE TABLE IF NOT EXISTS Customer (
+    customerID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
-    email varchar(255) NOT NULL, 
+    email varchar(255) NOT NULL,
     phone varchar(20) NOT NULL
 );
 
-CREATE TABLE Address (
+CREATE TABLE IF NOT EXISTS Address (
     addressID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customerID int NOT NULL,
     city varchar(100) NOT NULL,
@@ -23,22 +17,24 @@ CREATE TABLE Address (
     FOREIGN KEY (customerID) REFERENCES Customer(customerID)
 );
 
-CREATE TABLE Purchase (
-    purchaseID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    customerID int NOT NULL,
-    addressID int NOT NULL,
-    purchaseDate date NOT NULL,
-    totalPrice DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (customerID) REFERENCES Customer(customerID),
-    FOREIGN KEY (addressid) REFERENCES Address(addressID)
-);
-
-CREATE TABLE Product (
+CREATE TABLE IF NOT EXISTS Product (
     productID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     priceOfProduct DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE Photo (
+CREATE TABLE IF NOT EXISTS Purchase (
+    purchaseID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    productID int NOT NULL,
+    customerID int NOT NULL,
+    addressID int NOT NULL,
+    purchaseDate date NOT NULL,
+    totalPrice DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (productID) REFERENCES Product(productID),
+    FOREIGN KEY (customerID) REFERENCES Customer(customerID),
+    FOREIGN KEY (addressid) REFERENCES Address(addressID)
+);
+
+CREATE TABLE IF NOT EXISTS Photo (
     photoID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
     ratio varchar(255) NOT NULL,
