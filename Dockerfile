@@ -15,7 +15,7 @@ EXPOSE 80 443
 WORKDIR /var/www/html
 
 # Copy your PHP application code into the container
-COPY ./application .
+#COPY ./application .
 
 # Start Apache when the container runs
 CMD ["apache2-foreground"]
