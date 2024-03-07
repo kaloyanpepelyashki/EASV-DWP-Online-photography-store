@@ -16,7 +16,7 @@ services: # Services we want to include
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - "3306:3306"
+      - "3308:3306"
     volumes:
       - .db/:/var/lib/mysql
     environment:
