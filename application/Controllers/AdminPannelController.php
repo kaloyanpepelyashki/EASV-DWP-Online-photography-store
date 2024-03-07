@@ -13,8 +13,8 @@ require_once(__DIR__ . '/../Models/ShopAbout.php');
  */
 class AdminPannelController
 {
-    private $dbClient;          // Database client instance
-    private $shopAboutModel;    // ShopAbout model instance
+    private M\DatabaseClient $dbClient;          // Database client instance
+    private M\ShopAbout $shopAboutModel;    // ShopAbout model instance
 
     /**
      * Initializes a new instance of the AdminPannelController class.
@@ -29,9 +29,9 @@ class AdminPannelController
     /**
      * Retrieves the shop about information.
      *
-     * @return string The shop about information.
+     * @return array The shop about information.
      */
-    public function getShopAbout()
+    public function getShopAbout(): array
     {
         return $this->shopAboutModel->getShopAbout();
     }
@@ -42,7 +42,7 @@ class AdminPannelController
      * @param string $newValue The new value for the shop about text.
      * @return void
      */
-    public function updateShopAboutInfo(string $newValue)
+    public function updateShopAboutInfo(string $newValue): void
     {
         // Update shop about field with the provided new value
         $this->shopAboutModel->updateShopAboutField("about", $newValue);
@@ -54,7 +54,7 @@ class AdminPannelController
      * @param string $newValue The new value for the shop owner telephone number.
      * @return void
      */
-    public function updateShopOwnerTel(string $newValue)
+    public function updateShopOwnerTel(string $newValue): void
     {
         // Update shop about field for owner's phone with the provided new value
         $this->shopAboutModel->updateShopAboutField("owner_phone", $newValue);
@@ -65,7 +65,7 @@ class AdminPannelController
      *
      * @return array An array of all products.
      */
-    public function getAllProducts()
+    public function getAllProducts(): array
     {
         // Retrieve all rows from the 'photo' table in the database
         return $this->dbClient->getAllFromTable('photo');
@@ -76,7 +76,7 @@ class AdminPannelController
      *
      * @return array An array of all orders.
      */
-    public function getAllOrders()
+    public function getAllOrders(): array
     {
         // Retrieve all rows from the 'orders' table in the database
         return $this->dbClient->getAllFromTable("orders");
@@ -87,7 +87,7 @@ class AdminPannelController
      *
      * @return array An array of all undelivered orders.
      */
-    public function getAllUndelivered()
+    public function getAllUndelivered(): array
     {
         // Retrieve all rows from the 'notDelivered' table in the database (a view for undelivered orders)
         return $this->dbClient->getAllFromTable("notDelivered");
@@ -98,7 +98,7 @@ class AdminPannelController
      *
      * @return void
      */
-    public function handlePannelInteractions()
+    public function handlePannelInteractions(): void
     {
         // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -3,18 +3,19 @@
 namespace Models;
 
 // Load environment variables from the .env file
-$envFile = __DIR__ . '../../.env';
-$lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-foreach ($lines as $line) {
-    // If the line is a comment, skip it
-    if (strpos(trim($line), '#') === 0) {
-        continue;
-    }
-    list($name, $value) = explode('=', $line, 2);
-    $name = trim($name);
-    $value = trim($value);
-    putenv("$name=$value");
-}
+//$envFile = __DIR__ . '../../.env';
+//$lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+//foreach ($lines as $line) {
+//    // If the line is a comment, skip it
+//    if (strpos(trim($line), '#') === 0) {
+//        continue;
+//    }
+//    list($name, $value) = explode('=', $line, 2);
+//    $name = trim($name);
+//    $value = trim($value);
+//    putenv("$name=$value");
+//}
+use mysqli;
 
 /**
  * Class DatabaseClient
@@ -24,14 +25,15 @@ foreach ($lines as $line) {
 class DatabaseClient
 {
     // Singleton instance
-    private static $instance;
+    private static ?DatabaseClient $instance = null;
 
     // Database connection parameters
     private string $host;
     private int $port;
     private string $user;
     private string $password;
-    private $dbConnection;
+    private string $database;
+    private mysqli|false $dbConnection;
 
     /**
      * DatabaseClient constructor.
@@ -70,9 +72,9 @@ class DatabaseClient
      * 
      * @return DatabaseClient The singleton instance of DatabaseClient.
      */
-    public static function getInstance()
+    public static function getInstance(): DatabaseClient
     {
-        if (self::$instance === null) {
+        if (self::$instance == null) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -81,7 +83,7 @@ class DatabaseClient
     /**
      * Close the database connection.
      */
-    public function closeConnection()
+    public function closeConnection(): void
     {
         mysqli_close($this->dbConnection);
     }
@@ -128,7 +130,7 @@ class DatabaseClient
      * @return array The item from the table.
      * @throws \RuntimeException If there is an error retrieving the data.
      */
-    public function getSpecificID_FromTable(string $table, int $id)
+    public function getSpecificID_FromTable(string $table, int $id): array
     {
         try {
             // Construct and execute the SELECT query with a WHERE clause
@@ -163,7 +165,7 @@ class DatabaseClient
      * @return array The updated data.
      * @throws \RuntimeException If there is an error updating the table.
      */
-    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue)
+    public function updateTableById(string $table, int $idToUpdate, string $columnToUpdate, string $newValue): array
     {
         try {
             // Construct and execute the UPDATE query

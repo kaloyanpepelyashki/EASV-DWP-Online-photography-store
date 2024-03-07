@@ -5,7 +5,7 @@ namespace Models;
 // This model stores the shop about information such as tel, email, working hours
 class ShopAbout
 {
-    private $dbClient;
+    private DatabaseClient $dbClient;
     private string $shopAboutText;
     private string $shopOwnerTel;
     private string $shopOwnerMail;
@@ -54,7 +54,7 @@ class ShopAbout
      * @param string $column The column to update.
      * @param string $newValue The new value to update to.
      */
-    public function updateShopAboutField(string $column, string $newValue)
+    public function updateShopAboutField(string $column, string $newValue): void
     {
         // Get an instance of the DatabaseClient
         $dbClient = $this->dbClient;
