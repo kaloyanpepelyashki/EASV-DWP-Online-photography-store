@@ -4,8 +4,10 @@ services: # Services we want to include
     container_name: photographystoreapp
     build: .
     ports:
-      - 8090:80
-      - 4043:443 # For future ssl traffic
+      - "8090:80"
+      - "4043:443" # For future ssl traffic
+    volumes:
+      - ./application:/var/www/html
     environment:
       SITE_URL: http://localhost
     depends_on:
