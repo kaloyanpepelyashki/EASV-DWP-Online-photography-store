@@ -37,7 +37,7 @@ class ProductOverviewController
         $product = $this->dbClient->getSpecificID_FromTable("photo", $id);
         
         // Retrieve aspect ratio information from the database based on the product's aspect ratio ID
-        $aspectRatio = $this->dbClient->getSpecificID_FromTable("aspectratio", $product[0]['ratio']);
+      //  $aspectRatio = $this->dbClient->getSpecificID_FromTable("aspectratio", $product[0]['ratio']);
         
         // Create a new Photo object with the retrieved information
         $photo = new M\Photo(
@@ -47,7 +47,7 @@ class ProductOverviewController
             $product[0]['url'],
             $product[0]['published_at'],
             $product[0]['base_price'],
-            $aspectRatio[0]['aspectRatio']
+      //      $aspectRatio[0]['aspectRatio']
         );
         
         // Create a new CartProduct object with the Photo object

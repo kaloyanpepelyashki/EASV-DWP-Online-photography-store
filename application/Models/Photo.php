@@ -58,6 +58,6 @@ class Photo
         $this->publishedAt = $publishedAt;
         $this->basePrice = $basePrice;
         $this->description = $description;
-        $this->aspectRatio = $aspectRatio;
+      //  $this->aspectRatio = $aspectRatio;
     }
 }

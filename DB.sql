@@ -1,3 +1,4 @@
+-- Is it actualy processing the data from inputs?? If not then Customer, Address, hasCustomerAddress can be removed
 CREATE TABLE IF NOT EXISTS Customer (
     customerID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstName varchar(255) NOT NULL,
@@ -5,8 +6,8 @@ CREATE TABLE IF NOT EXISTS Customer (
     email varchar(255) NOT NULL,
     phone varchar(20) NOT NULL
 );
-
-CREATE TABLE IF NOT EXISTS Address (
+-- Is it actualy processing the data from inputs?? If not then Customer, Address, hasCustomerAddress can be removed
+CREATE TABLE IF NOT EXISTS Address ( 
     addressID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customerID int NOT NULL,
     city varchar(100) NOT NULL,
@@ -37,23 +38,23 @@ CREATE TABLE IF NOT EXISTS Purchase (
 CREATE TABLE IF NOT EXISTS Photo (
     photoID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
-    ratio varchar(255) NOT NULL,
+  --  ratio varchar(255) NOT NULL, RATIO IS NOT BEING INEGRATED
     description text NOT NULL,
     basePrice decimal(10, 2) NOT NULL
 );
-
+-- Only single print type - no point in having a multiple 
 CREATE TABLE Print (
     printID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     printType varchar(255) NOT NULL,
     printTypePrice decimal(10, 2) NOT NULL
 );
-
+-- is there implemented larger dimensions = higher price? Cant all sizes be in for the same price  
 CREATE TABLE Size (
     sizeID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     dimensions varchar(255) NOT NULL,
     sizePrice decimal(10, 2) NOT NULL
 );
-
+-- Is it actualy being used - wouldnt boolean make it easier - frame: YES/NO? 
 CREATE TABLE Frame (
     frameID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     frameType varchar(255) NOT NULL,
@@ -105,7 +106,7 @@ CREATE TABLE PurchaseProduct (
     FOREIGN KEY (purchaseID) REFERENCES Purchase(productID),
     FOREIGN KEY (productID) REFERENCES Product(productID)
 );
-
+-- Are data about the cusomer being actualy collected throught the input form?
 -- Many-to-Many relation
 CREATE TABLE CustomerAddress (
     customerAddressID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
