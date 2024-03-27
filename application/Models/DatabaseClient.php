@@ -44,7 +44,7 @@ class DatabaseClient
     {
         // Set default database connection parameters
         $this->host = "db";
-        $this->port = 3308;
+        $this->port = 3306;
         $this->user = "user";
         $this->password = "user";
         $this->database = "store";

@@ -1,3 +1,9 @@
+
+DROP DATABASE IF EXISTS DWP;
+CREATE DATABASE DWP;
+USE DWP;
+
+
 -- Is it actualy processing the data from inputs?? If not then Customer, Address, hasCustomerAddress can be removed
 CREATE TABLE IF NOT EXISTS Customer (
     customerID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -88,6 +94,7 @@ CREATE TABLE shopInfo (
     uniqueID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     about text NOT NULL,
     ownerPhone varchar(255) NOT NULL,
+    ownerEmail text NOT NULL,
     openingHour time NOT NULL,
     closingHour time NOT NULL
 );
